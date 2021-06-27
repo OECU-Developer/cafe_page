@@ -1,0 +1,26 @@
+body {
+    text-align: center;
+}
+
+.flex-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+}
+
+.flex-item {
+    /* 内側の余白 */
+    padding: 20px;
+    /* 外側の余白 */
+    margin: 20px;
+    /* フォントの大きさ(100%は標準の大きさ) */
+    font-size: 100%;
+    /* 幅の大きさ */
+    width: 200px;
+    background-color:  #eeeeee;
+    border-radius: 10px;
+}
+
+#submit-button {
+    margin: 15px;
+}

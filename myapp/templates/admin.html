@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>管理画面</title>
+    <link rel="stylesheet" href="static/css/admin.css" media="screen">
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
+    <script src="../static/js/script.js"></script>
+    <script src="../static/js/chart.min.js"></script>
+    <script src="../static/js/chartjs-plugin-streaming.min.js"></script>
+    <script src="../static/js/desvg.min.js"></script>
+    <script src="../static/js/holiday.js"></script>
+</head>
+<body>
+    <p>{{message}}</p>
+    <div class="flex-wrapper">
+        <div class="flex-item">
+            <h1>現在の閾値</h1>
+            <h2>J 号館の閾値</h2>
+            <p>空いている：{{ j_empty }}</p>
+            <p>少し混雑：{{ j_little_empty }}</p>
+            <p>混雑中：{{ j_little_crowded }}</p>
+            <p>非常に混雑：{{ j_crowded }}</p>
+            <h2>Z 号館の閾値</h2>
+            <p>空いている：{{ z_empty }}</p>
+            <p>少し混雑：{{ z_little_empty }}</p>
+            <p>混雑中：{{ z_little_crowded }}</p>
+            <p>非常に混雑：{{ z_crowded }}</p>
+        </div>
+
+        <div class="flex-item">
+            <form method="POST" enctype="multipart/form-data">
+                <h2>J 号館の閾値</h2>
+                <div>
+                    <label>空いている：</label>
+                    <input type="number" name="j_empty" id="j_empty" placeholder="0">
+                </div>
+                <div>
+                    <label>少し混雑：</label>
+                    <input type="number" name="j_little_empty" id="j_little_empty" placeholder="50">
+                </div>
+                <div>
+                    <label>混雑中：</label>
+                    <input type="number" name="j_little_crowded" id="j_little_crowded" placeholder="70">
+                </div>
+                <div>
+                    <label>非常に混雑：</label>
+                    <input type="number" name="j_crowded" id="j_crowded" placeholder="100">
+                </div>
+
+
+                <h2>Z 号館の閾値</h2>
+                <div>
+                    <label>空いている：</label>
+                    <input type="number" name="z_empty" id="z_empty" placeholder="0">
+                </div>
+                <div>
+                    <label>少し混雑：</label>
+                    <input type="number" name="z_little_empty" id="z_little_empty" placeholder="50">
+                </div>
+                <div>
+                    <label>混雑中：</label>
+                    <input type="number" name="z_little_crowded" id="z_little_crowded" placeholder="70">
+                </div>
+                <div>
+                    <label>非常に混雑：</label>
+                    <input type="number" name="z_crowded" id="z_crowded" placeholder="100">
+                </div>
+
+                <div id="submit-button">
+                    <input type="submit" value="更新">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <h1>ラズパイの稼働状況</h1>
+    <p>Web サーバが立ち上がってから DB を何分更新していないかで判断。</p>
+</body>
+</html>
