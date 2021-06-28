@@ -227,6 +227,7 @@ g {
   margin-top: 15px;
   margin-bottom: 15px;
   padding-top: 0;
+  border-radius: 5px;
 }
 
 
@@ -247,10 +248,15 @@ g {
   width: 50%;
   text-align: center;
 }
-.time{
+#J_time{
   font-size: 40px;
   margin-bottom: 0;
 }
+#Z_time{
+  font-size: 40px;
+  margin-bottom: 0;
+}
+
 #J-Number-of-people{
   font-size: 40px;
 }
@@ -264,6 +270,20 @@ g {
 .range{
   width: 100%;
 }
+.line-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.line-content a{
+  text-align: center;
+  border-bottom: 4px solid black;
+}
+#J-now{
+  text-align: center;
+  border-bottom: 4px solid black;
+}
+
 
 
 /* 試しマップ */
@@ -367,3 +387,5 @@ g {
 .tab-switch {
 	display: none;
 }
+
+

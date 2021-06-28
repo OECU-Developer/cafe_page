@@ -7,11 +7,89 @@
     <title>混雑度チェッカー</title><!--titleはタブの名前(Webページのタイトル)-->
     <link rel="stylesheet" href="static/css/style.css" media="screen">
     <script src="../static/js/jquery-3.6.0.min.js"></script>
+
+    <link href="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
+    <link rel="stylesheet" href="../static/css/jquery.range.css">
     <script src="../static/js/script.js"></script>
     <script src="../static/js/chart.min.js"></script>
     <script src="../static/js/chartjs-plugin-streaming.min.js"></script>
     <script src="../static/js/desvg.min.js"></script>
     <script src="../static/js/holiday.js"></script>
+    <script src="../static/js/jquery.range.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <!-- 試し -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        var J_startX = null,Z_startX=null;
+        var J_endX = null,Z_endX=null;
+        var J_count=0,Z_count=0;
+
+        window.addEventListener('load', function(){
+            // スワイプ／フリック
+            document.getElementById("J_content1").addEventListener('touchmove', J_logSwipe);
+            // タッチ開始
+            document.getElementById("J_content1").addEventListener('touchstart', J_logSwipeStart);
+            // タッチ終了
+            document.getElementById("J_content1").addEventListener('touchend', J_logSwipeEnd);
+            // スワイプ／フリック
+            document.getElementById("Z_content1").addEventListener('touchmove', Z_logSwipe);
+            // タッチ開始
+            document.getElementById("Z_content1").addEventListener('touchstart', Z_logSwipeStart);
+            // タッチ終了
+            document.getElementById("Z_content1").addEventListener('touchend',  Z_logSwipeEnd);
+
+        });
+
+        function J_logSwipeStart(event) {
+            event.preventDefault();
+
+            J_startX = event.touches[0].pageX;
+        }
+
+        function J_logSwipe(event) {
+            event.preventDefault();
+            J_endX = event.touches[0].pageX;
+        }
+
+        function J_logSwipeEnd(event) {
+            event.preventDefault();
+
+            if( 0 < (J_endX - J_startX) ) {
+                console.log("右向き");
+                J_count=J_change_screeen(J_count-1)
+            } else {
+                console.log("左向き");
+                J_count=J_change_screeen(J_count+1)
+            }
+        }
+        function Z_logSwipeStart(event) {
+            event.preventDefault();
+
+            Z_startX = event.touches[0].pageX;
+        }
+
+        function Z_logSwipe(event) {
+            event.preventDefault();
+            Z_endX = event.touches[0].pageX;
+        }
+
+        function Z_logSwipeEnd(event) {
+            event.preventDefault();
+
+            if( 0 < (Z_endX - Z_startX) ) {
+                console.log("右向き");
+                Z_count=Z_change_screeen(Z_count-1)
+            } else {
+                console.log("左向き");
+                Z_count=Z_change_screeen(Z_count+1)
+            }
+        }
+
+    </script>
+    <!-- ここまで -->
+
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark">
@@ -21,20 +99,20 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+              <li class="nav-item active">
+                  <a class="nav-link" href="/"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="map">MAP</a>
+                    <a class="nav-link" href="map"><i class="fas fa-map-marked-alt"></i> MAP</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/details">J号館</a>
+                    <a class="nav-link" href="/details"><i class="fas fa-utensils"></i> J号館</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/details">Z号館</a>
+                    <a class="nav-link" href="/details"><i class="fas fa-utensils"></i> Z号館</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/overview">その他</a>
+                    <a class="nav-link" href="/overview"><i class="fas fa-info-circle"></i> その他</a>
                 </li>
             </ul>
         </div>
@@ -42,9 +120,8 @@
     <!-- <div id="title">
         <h1>混雑度チェッカー</h1>
     </div> -->
-
     <div class="container-wrapper">
-        <div class="card-body">
+        <div class="card-body" id="J_content1">
             <div class="title">
                 <p><span id="j">J</span> 号館１階食堂</p>
             </div>
@@ -53,29 +130,38 @@
                     <img id="J-icon" src="../static/images/icon1.png">
                 </div>
                 <div>
-                    <p class="time">現在</p>
+                    <p id="J_time">現在</p>
                     <p class="time-people">
                         <a id="J-Number-of-people">30</a>
                         <a>人</a>
                     </p>
                 </div>
             </div>
-            <p class="information">現在、空いています</p>
-            <div>
-                <input class ="range" type="range"list="my-datalist" min="1"max="6">
-                <datalist id="my-datalist">
-                    <option value="1">
-                    <option value="2">
-                    <option value="3">
-                    <option value="4">
-                    <option value="5">
-                    <option value="6">
-                </datalist>
+            <p class="information"><i class='far fa-clock'></i> 現在、空いています</p>
+            <div class="line-content">
+                <p id="J-now">現 在</p>
+                <p id="J-1">1分後</p>
+                <p id="J-2">2分後</p>
+                <p id="J-3">3分後</p>
+                <p id="J-4">4分後</p>
+                <p id="J-5">5分後</p>
             </div>
-        </div>
-
+            <!-- <div id="range"></div> -->
+            <!-- <input type="hidden" class="slider-input" value="23" /> -->
+            <!-- <div class="slider"> -->
+                <!-- <input class ="range" type="range"list="my-datalist" min="1"max="6">
+            <datalist id="my-datalist">
+                <option value="1">
+                <option value="2">
+                <option value="3">
+                <option value="4">
+                <option value="5">
+                <option value="6">
+            </datalist> -->
+        <!-- </div> -->
+    </div>
         <!--Z号館側-->
-    <div class="card-body">
+    <div class="card-body" id="Z_content1">
         <div class="title">
             <p><span id="z">Z</span> 号館１階食堂</p>
         </div>
@@ -84,16 +170,18 @@
                 <img id="Z-icon" src="../static/images/icon2.png">
             </div>
             <div>
-                <p class="time">3分後</p>
+                <p id="Z_time">現在</p>
                 <p class="time-people">
                     <a id="Z-Number-of-people">60</a>
                     <a>人</a>
                 </p>
             </div>
         </div>
-        <p class="information">3分後、やや混雑しています</p>
+        <p class="information">現在、やや混雑しています</p>
         <div>
-            <input class ="range" type="range"list="my-datalist" min="1"max="6">
+
+        </div>
+            <!-- <input class ="range" type="range"list="my-datalist" min="1"max="6">
             <datalist id="my-datalist">
                 <option value="1">
                 <option value="2">
@@ -101,10 +189,9 @@
                 <option value="4">
                 <option value="5">
                 <option value="6">
-            </datalist>
-        </div>
+            </datalist> -->
     </div>
-    </div>
+    <section id="content1"></section>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>

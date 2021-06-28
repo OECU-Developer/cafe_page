@@ -220,3 +220,138 @@ source.onmessage = function (event) {
 }
 };
 
+$('.slider-input').jRange({
+    from: -180,
+    to: 180,
+    step: 15,
+    scale: [-180,-150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150, 180],
+    format: '%s',
+    width: '100%',
+    theme: "theme-blue",
+    showLabels: false,
+});
+
+
+var range = document.getElementById('range');
+
+noUiSlider.create(range, {
+    start: [ 20, 80 ], // Handle start position
+    step: 10, // Slider moves in increments of '10'
+    margin: 20, // Handles must be more than '20' apart
+    connect: true, // Display a colored bar between the handles
+    direction: 'rtl', // Put '0' at the bottom of the slider
+    orientation: 'vertical', // Orient the slider vertically
+    behaviour: 'tap-drag', // Move handle on tap, bar is draggable
+    range: { // Slider can select '0' to '100'
+        'min': 0,
+        'max': 100
+    },
+    pips: { // Show a scale with the slider
+        mode: 'steps',
+        density: 2
+    }
+});
+
+var valueInput = document.getElementById('value-input'),
+        valueSpan = document.getElementById('value-span');
+
+// When the slider value changes, update the input and span
+range.noUiSlider.on('update', function( values, handle ) {
+    if ( handle ) {
+        valueInput.value = values[handle];
+    } else {
+        valueSpan.innerHTML = values[handle];
+    }
+});
+
+// When the input changes, set the slider value
+valueInput.addEventListener('change', function(){
+    range.noUiSlider.set([null, this.value]);
+});
+
+
+
+//試し
+
+function J_change_screeen(count){
+    if(count==0){
+        $("#J_time").html("現在");
+        $(".information").html("<i class='far fa-clock'></i> 現在、空いています");
+        $("#J-icon").attr("src", "../static/images/icon1.png");
+        $("#J-Number-of-people").html("30");
+        $("#J-5").css("border-bottom","4px solid white");
+        $("#J-1").css("border-bottom","4px solid white");
+        $("#J-now").css("border-bottom","4px solid black");
+        return count;
+    }else if(count==1){
+        $("#J_time").html("１分後");
+        $(".information").html("<i class='fas fa-exclamation-triangle'></i> 1分後、やや混雑します");
+        $("#J-Number-of-people").html("45");
+        $("#J-icon").attr("src", "../static/images/icon2.png");
+        $("#J-now").css("border-bottom","4px solid white");
+        $("#J-2").css("border-bottom","4px solid white");
+        $("#J-1").css("border-bottom","4px solid black");
+        return count;
+    }else if(count==2){
+        $("#J_time").html("2分後");
+        $("#J-1").css("border-bottom","4px solid white");
+        $("#J-3").css("border-bottom","4px solid white");
+        $("#J-2").css("border-bottom","4px solid black");
+        return count;
+    }else if(count==3){
+        $("#J_time").html("3分後");
+        $("#J-2").css("border-bottom","4px solid white");
+        $("#J-4").css("border-bottom","4px solid white");
+        $("#J-3").css("border-bottom","4px solid black");
+        return count;
+    }else if(count==4){
+        $("#J_time").html("4分後");
+        $("#J-3").css("border-bottom","4px solid white");
+        $("#J-5").css("border-bottom","4px solid white");
+        $("#J-4").css("border-bottom","4px solid black");
+        return count;
+    }else if(count==5){
+        $("#J_time").html("5分後");
+        $("#J-4").css("border-bottom","4px solid white");
+        $("#J-now").css("border-bottom","4px solid white");
+        $("#J-5").css("border-bottom","4px solid black");
+        return count;
+    }else if(count==-1){
+        $("#J_time").html("5分後");
+        $("#J-now").css("border-bottom","4px solid white");
+        $("#J-5").css("border-bottom","4px solid black");
+        return 5;
+    }else{
+        $("#J_time").html("現在");
+        $("#J-5").css("border-bottom","4px solid white");
+        $("#J-now").css("border-bottom","4px solid black");
+        return 0;
+    }
+}
+function Z_change_screeen(count){
+    if(count==0){
+        $("#Z_time").html("現在");
+        return count;
+    }else if(count==1){
+        $("#Z_time").html("１分後");
+        return count;
+    }else if(count==2){
+        $("#Z_time").html("2分後");
+        return count;
+    }else if(count==3){
+        $("#Z_time").html("3分後");
+        return count;
+    }else if(count==4){
+        $("#Z_time").html("4分後");
+        return count;
+    }else if(count==5){
+        $("#Z_time").html("5分後");
+        return count;
+    }else if(count==-1){
+        $("#Z_time").html("5分後");
+        return 5;
+    }else{
+        $("#Z_time").html("現在");
+        return 0;
+    }
+}
