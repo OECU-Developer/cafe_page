@@ -264,7 +264,10 @@ g {
   font-size: 40px;
 }
 
-.information{
+#J-information{
+  text-align: center;
+}
+#Z-information{
   text-align: center;
 }
 .range{
@@ -274,14 +277,34 @@ g {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  background-color: rgba(0, 0, 0, 0.158);
 }
-.line-content a{
+.line-content p{
   text-align: center;
-  border-bottom: 4px solid black;
+  background-color: white;
+  /* border-bottom: 4px solid black; */
+  margin-bottom: 0;
+  padding-right: 2px;
+  padding-left: 2px;
 }
 #J-now{
-  text-align: center;
-  border-bottom: 4px solid black;
+  border-bottom: 3px solid #42a5f5;
+  background-color: #42a5f5;
+}
+#J-1{
+  border-bottom: 3px solid #42a5f5;
+}
+#J-2{
+  border-bottom: 3px solid #79d8b8;
+}
+#J-3{
+  border-bottom: 3px solid #ffd659;
+}
+#J-4{
+  border-bottom: 3px solid #ffd659;
+}
+#J-5{
+  border-bottom: 3px solid #ff5a4e;
 }
 
 
