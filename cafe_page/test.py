@@ -51,6 +51,22 @@ def schedule():
         with urllib.request.urlopen(req) as res:
             res = res.read().decode("utf-8")
             print(res)
+    except:
+        print('Error')
+
+
+    addr4 = "1a:2b:3c:46:2b:3c"
+
+    print("post")
+    data = {}
+    data["addr4"] = addr4
+    url = "http://127.0.0.1:5000/4"
+    try:
+        data = urllib.parse.urlencode(data).encode("utf-8")
+        req = urllib.request.Request(url, data=data, method="POST")
+        with urllib.request.urlopen(req) as res:
+            res = res.read().decode("utf-8")
+            print(res)
     except urllib.error.HTTPError as err:
         print(err.reason)
 

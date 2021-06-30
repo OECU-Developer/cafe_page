@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
 from flask import Flask, render_template, request, json, jsonify, Response
 from flask_httpauth import HTTPDigestAuth
 from models.models import SensorCurrent
 from models.database import db_session
 from datetime import datetime
 import random
+import flask_devices
 import time
 
 app = Flask(__name__, instance_path='/instance')
@@ -12,6 +12,10 @@ app.config.from_pyfile('app.cfg', silent=True)
 app.config['SECRET_KEY'] = 'secret key here'
 app.config['DIGEST_AUTH_FORCE'] = True
 auth = HTTPDigestAuth()
+
+devices = flask_devices.Devices(app)
+devices.add_pattern('mobile', 'iPhone|iPod|Android.*Mobile|Windows.*Phone|dream|blackberry|CUPCAKE|webOS|incognito|webmate', 'templates/sp')
+devices.add_pattern('pc', '.*', 'templates/pc')
 
 users = {
     "user": "10ka1pin"
@@ -25,8 +29,10 @@ def info():
     addr = str(request.form['addr'])
     addr = addr.split()
     addr = set(addr)
-    return render_template('index.html', addr=addr)
-
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_index.html', addr=addr)
+    else:
+        return render_template('index.html', addr=addr)
 
 @app.route("/2", methods=['POST'])
 def info2():
@@ -46,7 +52,10 @@ def info2():
     db_session.add(current)
     db_session.commit()
     db_session.close()
-    return render_template('index.html', addr2=addr2)
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_index.html', addr2=addr2)
+    else:
+        return render_template('index.html', addr2=addr2)
 
 @app.route("/3", methods=['POST'])
 def info3():
@@ -54,7 +63,18 @@ def info3():
     addr3 = str(request.form['addr3'])
     addr3 = addr3.split()
     addr3 = set(addr3)
-    counted_2 = len(addr3)
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_index.html', addr3=addr3)
+    else:
+        return render_template('index.html', addr3=addr3)
+
+@app.route("/4", methods=['POST'])
+def info4():
+    global addr4
+    addr4 = str(request.form['addr4'])
+    addr4 = addr4.split()
+    addr4 = set(addr4)
+    counted_2 = len(list(addr3 | addr4))
     counted_2 = counted_2
     counted_2 = int(counted_2 / 0.7366)
     print("/3 の値：" + str(counted_2))
@@ -66,32 +86,18 @@ def info3():
     current_2.z_merged_num = int(counted_2)
     db_session.add(current_2)
     db_session.commit()
-    return render_template('index.html', addr3=addr3)
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_index.html', addr4=addr4)
+    else:
+        return render_template('index.html', addr4=addr4)
 
 @app.route("/")
 def index():
     people = SensorCurrent.query.first()
-    return render_template('index.html', people=people)
-
-#
-@app.route("/map")
-def map():
-    people = SensorCurrent.query.first()
-    return render_template('map.html', people=people)
-#
-#
-@app.route("/details")
-def details():
-    people = SensorCurrent.query.first()
-    return render_template('details.html', people=people)
-#
-#
-@app.route("/overview")
-def overview():
-    people = SensorCurrent.query.first()
-    return render_template('overview.html', people=people)
-#
-
+    if request.DEVICE == 'mobile':
+        return render_template('mobile_index.html', people=people)
+    else:
+        return render_template('index.html', people=people)
 
 @auth.get_password
 def get_pw(username):
@@ -103,7 +109,12 @@ def get_pw(username):
 @auth.login_required
 def admin_get():
     username = auth.username()
-    return render_template('admin.html', username=username)
+
+    people = SensorCurrent.query.first()
+    rasp_date = datetime.now() - people.date
+    rasp_date = str(rasp_date)
+
+    return render_template('admin.html', username=username, rasp_date=rasp_date)
 
 @app.route("/"+str(ADMIN_URL), methods=['POST'])
 def admin_post():
