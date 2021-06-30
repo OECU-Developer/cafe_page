@@ -272,189 +272,68 @@ valueInput.addEventListener('change', function(){
 
 
 //試し
-function J_data_change(){
-    //人数取得
-    people_now=30;
-    people_1=45;
-    people_2=60; 
-    people_3=70;
-    people_4=90;
-    people_5=100;
-    // people=["30","45","60","70","90","100"];
-    //閾値取得
-    J_1=0;
-    J_2=50;
-    J_3=70;
-    J_4=100;
-    //現在～5分後までのデータ振り分け
-    J_data=['"#J-now"','"#J-1"','"#J-2"','"#J-3"','"#J-4"','"#J-5"'];
-    //now
-    if(J_1<=people_now&&people_now<J_2){
-        $("#J-now").css({
-            "border-bottom":"3px solid #42a5f5",
-            "background-color":"white"
-        })
+function J_data_change(J_people,J_1,J_2,J_3,J_4){
+    let name=[
+        "#J-now",
+        "#J-1",
+        "#J-2",
+        "#J-3",
+        "#J-4",
+        "#J-5",
+    ]
+    let border_bottom_style=[
+        {"border-bottom":"3px solid #42a5f5"},
+        {"border-bottom":"3px solid #79d8b8"},
+        {"border-bottom":"3px solid #ffd659"},
+        {"border-bottom":"3px solid #ff5a4e"},
+    ]
+    let background_color_style=[
+        {"background-color":"white"},
+    ]
+
+    for(let i=0;i<6;i++){
+        $(name[i]).css(background_color_style[0]);
+        if(J_1<=J_people[i]&&J_people[i]<J_2){
+            $(name[i]).css(border_bottom_style[0]);
+        }
+        else if(J_2<=J_people[i]&&J_people[i]<J_3){
+            $(name[i]).css(border_bottom_style[1]);
+        }
+        else if(J_3<=J_people[i]&&J_people[i]<J_4){
+            $(name[i]).css(border_bottom_style[2]);
+        }
+        else{
+            $(name[i]).css(border_bottom_style[3]);
+        }
     }
-    else if(J_2<=people_now&&people_now<J_3){
-        $("#J-now").css({
-            "border-bottom":"3px solid #79d8b8",
-            "background-color":"white"
-        })
-    }
-    else if(J_3<=people_now&&people_now<J_4){
-        $("#J-now").css({
-            "border-bottom":"3px solid #ffd659",
-            "background-color":"white"
-        })
-    }
-    else{
-        $("#J-now").css({
-            "border-bottom":"3px solid #ff5a4e",
-            "background-color":"white"
-        })
-    }
-    //1
-    if(J_1<=people_1&&people_1<J_2){
-        $("#J-1").css({
-            "border-bottom":"3px solid #42a5f5",
-            "background-color":"white"
-        })
-    }
-    else if(J_2<=people_1&&people_1<J_3){
-        $("#J-1").css({
-            "border-bottom":"3px solid #79d8b8",
-            "background-color":"white"
-        })
-    }
-    else if(J_3<=people_1&&people_1<J_4){
-        $("#J-1").css({
-            "border-bottom":"3px solid #ffd659",
-            "background-color":"white"
-        })
-    }
-    else{
-        $("#J-1").css({
-            "border-bottom":"3px solid #ff5a4e",
-            "background-color":"white"
-        })
-    }
-    //2
-    if(J_1<=people_2&&people_2<J_2){
-        $("#J-2").css({
-            "border-bottom":"3px solid #42a5f5",
-            "background-color":"white"
-        })
-    }
-    else if(J_2<=people_2&&people_2<J_3){
-        $("#J-2").css({
-            "border-bottom":"3px solid #79d8b8",
-            "background-color":"white"
-        })
-    }
-    else if(J_3<=people_2&&people_2<J_4){
-        $("#J-2").css({
-            "border-bottom":"3px solid #ffd659",
-            "background-color":"white"
-        })
-    }
-    else{
-        $("#J-2").css({
-            "border-bottom":"3px solid #ff5a4e",
-            "background-color":"white"
-        })
-    }
-    //3
-    if(J_1<=people_3&&people_3<J_2){
-        $("#J-3").css({
-            "border-bottom":"3px solid #42a5f5",
-            "background-color":"white"
-        })
-    }
-    else if(J_2<=people_3&&people_3<J_3){
-        $("#J-3").css({
-            "border-bottom":"3px solid #79d8b8",
-            "background-color":"white"
-        })
-    }
-    else if(J_3<=people_3&&people_3<J_4){
-        $("#J-3").css({
-            "border-bottom":"3px solid #ffd659",
-            "background-color":"white"
-        })
-    }
-    else{
-        $("#J-3").css({
-            "border-bottom":"3px solid #ff5a4e",
-            "background-color":"white"
-        })
-    }
-    //4
-    if(J_1<=people_4&&people_4<J_2){
-        $("#J-4").css({
-            "border-bottom":"3px solid #42a5f5",
-            "background-color":"white"
-        })
-    }
-    else if(J_2<=people_4&&people_4<J_3){
-        $("#J-4").css({
-            "border-bottom":"3px solid #79d8b8",
-            "background-color":"white"
-        })
-    }
-    else if(J_3<=people_4&&people_4<J_4){
-        $("#J-4").css({
-            "border-bottom":"3px solid #ffd659",
-            "background-color":"white"
-        })
-    }
-    else{
-        $("#J-4").css({
-            "border-bottom":"3px solid #ff5a4e",
-            "background-color":"white"
-        })
-    }
-    //5
-    if(J_1<=people_5&&people_5<J_2){
-        $("#J-now").css({
-            "border-bottom":"3px solid #42a5f5",
-            "background-color":"white"
-        })
-    }
-    else if(J_2<=people_5&&people_5<J_3){
-        $("#J-5").css({
-            "border-bottom":"3px solid #79d8b8",
-            "background-color":"white"
-        })
-    }
-    else if(J_3<=people_5&&people_5<J_4){
-        $("#J-5").css({
-            "border-bottom":"3px solid #ffd659",
-            "background-color":"white"
-        })
-    }
-    else{
-        $("#J-5").css({
-            "border-bottom":"3px solid #ff5a4e",
-            "background-color":"white"
-        })
-    }
+}
+
+function change_J_people(count){
+    J_people_data()
+    J_change_screeen(count)
+}
+
+function J_people_data(){
+    
+    var min = 0 ;
+    var max = 100 ;
+    
+    
+    people_now=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    people_1=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    people_2=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    people_3=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    people_4=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    people_5=Math.floor( Math.random() * (max + 1 - min) ) + min ;
 
 }
 
-
 function J_change_screeen(count){
-    //人数
-    people_now=30;
-    people_1=45;
-    people_2=60;
-    people_3=70;
-    people_4=90;
-    people_5=100;
-    //閾値取得
     J_1=0;
     J_2=50;
     J_3=70;
     J_4=100;
+    
     //アイコン
     comment_icon1="<i class='far fa-clock'></i>";
     comment_icon2="<i class='fas fa-exclamation-triangle'></i>";
@@ -463,287 +342,98 @@ function J_change_screeen(count){
     comment2=" やや混雑しています";
     comment3=" 混雑しています";
     comment4=" 大変、混雑しています";
-    if(count==0){
-        J_data_change();
-        if(J_1<=people_now&&people_now<J_2){
-            $("#J_time").html("現在");
-            $("#J-information").html(comment_icon1+comment1);
-            $("#J-Number-of-people").html(people_now);
-            $("#J-now").css("border-bottom","3px solid #42a5f5");
-            $("#J-now").css("background-color","#42a5f5");
-            $("#J-icon").attr("src", "../static/images/icon1.png");
-        }
-        else if(J_2<=people_now&&people_now<J_3){
-            $("#J_time").html("現在");
-            $("#J-information").html(comment_icon2+comment2);
-            $("#J-Number-of-people").html(people_now);
-            $("#J-now").css("border-bottom","3px solid #79d8b8");
-            $("#J-now").css("background-color","#79d8b8");
-            $("#J-icon").attr("src", "../static/images/icon2.png");
-        }
-        else if(J_3<=people_now&&people_now<J_4){
-            $("#J_time").html("現在");
-            $("#J-information").html(comment_icon2+comment3);
-            $("#J-Number-of-people").html(people_now);
-            $("#J-now").css("border-bottom","3px solid #ffd659");
-            $("#J-now").css("background-color","#ffd659");
-            $("#J-icon").attr("src", "../static/images/icon3.png");
-        }
-        else{
-            $("#J_time").html("現在");
-            $("#J-information").html(comment_icon2+comment4);
-            $("#J-Number-of-people").html(people_now);
-            $("#J-now").css("border-bottom","3px solid #ff5a4e");
-            $("#J-now").css("background-color","#ff5a4e");
-            $("#J-icon").attr("src", "../static/images/icon4.png");
-        }
-        return count;
-    }else if(count==1){
-        J_data_change();
-        if(J_1<=people_1&&people_1<J_2){
-            $("#J_time").html("1分後");
-            $("#J-information").html(comment_icon2+comment1);
-            $("#J-Number-of-people").html(people_1);
-            $("#J-1").css("border-bottom","3px solid #42a5f5");
-            $("#J-1").css("background-color","#42a5f5");
-            $("#J-icon").attr("src", "../static/images/icon1.png");
-        }
-        else if(J_2<=people_1&&people_1<J_3){
-            $("#J_time").html("1分後");
-            $("#J-information").html(comment_icon2+comment2);
-            $("#J-Number-of-people").html(people_1);
-            $("#J-1").css("border-bottom","3px solid #79d8b8");
-            $("#J-1").css("background-color","#79d8b8");
-            $("#J-icon").attr("src", "../static/images/icon2.png");
-        }
-        else if(J_3<=people_1&&people_1<J_4){
-            $("#J_time").html("1分後");
-            $("#J-information").html(comment_icon2+comment3);
-            $("#J-Number-of-people").html(people_1);
-            $("#J-1").css("border-bottom","3px solid #ffd659");
-            $("#J-1").css("background-color","#ffd659");
-            $("#J-icon").attr("src", "../static/images/icon3.png");
-        }
-        else{
-            $("#J_time").html("1分後");
-            $("#J-information").html(comment_icon2+comment4);
-            $("#J-Number-of-people").html(people_1);
-            $("#J-1").css("border-bottom","3px solid #ff5a4e");
-            $("#J-1").css("background-color","#ff5a4e");
-            $("#J-icon").attr("src", "../static/images/icon4.png");
-        }
-        return count;
-    }else if(count==2){
-        J_data_change();
-        if(J_1<=people_2&&people_2<J_2){
-            $("#J_time").html("2分後");
-            $("#J-information").html(comment_icon2+comment1);
-            $("#J-Number-of-people").html(people_2);
-            $("#J-2").css("border-bottom","3px solid #42a5f5");
-            $("#J-2").css("background-color","#42a5f5");
-            $("#J-icon").attr("src", "../static/images/icon1.png");
-        }
-        else if(J_2<=people_2&&people_2<J_3){
-            $("#J_time").html("2分後");
-            $("#J-information").html(comment_icon2+comment2);
-            $("#J-Number-of-people").html(people_2);
-            $("#J-2").css("border-bottom","3px solid #79d8b8");
-            $("#J-2").css("background-color","#79d8b8");
-            $("#J-icon").attr("src", "../static/images/icon2.png");
-        }
-        else if(J_3<=people_2&&people_2<J_4){
-            $("#J_time").html("2分後");
-            $("#J-information").html(comment_icon2+comment3);
-            $("#J-Number-of-people").html(people_2);
-            $("#J-2").css("border-bottom","3px solid #ffd659");
-            $("#J-2").css("background-color","#ffd659");
-            $("#J-icon").attr("src", "../static/images/icon3.png");
-        }
-        else{
-            $("#J_time").html("2分後");
-            $("#J-information").html(comment_icon2+comment4);
-            $("#J-Number-of-people").html(people_2);
-            $("#J-2").css("border-bottom","3px solid #ff5a4e");
-            $("#J-2").css("background-color","#ff5a4e");
-            $("#J-icon").attr("src", "../static/images/icon4.png");
-        }
-        return count;
-    }else if(count==3){
-        J_data_change();
-        if(J_1<=people_3&&people_3<J_2){
-            $("#J_time").html("3分後");
-            $("#J-information").html(comment_icon2+comment1);
-            $("#J-Number-of-people").html(people_3);
-            $("#J-3").css("border-bottom","3px solid #42a5f5");
-            $("#J-3").css("background-color","#42a5f5");
-            $("#J-icon").attr("src", "../static/images/icon1.png");
-        }
-        else if(J_2<=people_3&&people_3<J_3){
-            $("#J_time").html("3分後");
-            $("#J-information").html(comment_icon2+comment2);
-            $("#J-Number-of-people").html(people_3);
-            $("#J-3").css("border-bottom","3px solid #79d8b8");
-            $("#J-3").css("background-color","#79d8b8");
-            $("#J-icon").attr("src", "../static/images/icon2.png");
-        }
-        else if(J_3<=people_3&&people_3<J_4){
-            $("#J_time").html("3分後");
-            $("#J-information").html(comment_icon2+comment3);
-            $("#J-Number-of-people").html(people_3);
-            $("#J-3").css("border-bottom","3px solid #ffd659");
-            $("#J-3").css("background-color","#ffd659");
-            $("#J-icon").attr("src", "../static/images/icon3.png");
-        }
-        else{
-            $("#J_time").html("3分後");
-            $("#J-information").html(comment_icon2+comment4);
-            $("#J-Number-of-people").html(people_3);
-            $("#J-3").css("border-bottom","3px solid #ff5a4e");
-            $("#J-3").css("background-color","#ff5a4e");
-            $("#J-icon").attr("src", "../static/images/icon4.png");
-        }
-        return count;
-    }else if(count==4){
-        J_data_change();
-        if(J_1<=people_4&&people_4<J_2){
-            $("#J_time").html("4分後");
-            $("#J-information").html(comment_icon2+comment1);
-            $("#J-Number-of-people").html(people_4);
-            $("#J-4").css("border-bottom","3px solid #42a5f5");
-            $("#J-4").css("background-color","#42a5f5");
-            $("#J-icon").attr("src", "../static/images/icon1.png");
-        }
-        else if(J_2<=people_4&&people_4<J_3){
-            $("#J_time").html("4分後");
-            $("#J-information").html(comment_icon2+comment2);
-            $("#J-Number-of-people").html(people_4);
-            $("#J-4").css("border-bottom","3px solid #79d8b8");
-            $("#J-4").css("background-color","#79d8b8");
-            $("#J-icon").attr("src", "../static/images/icon2.png");
-        }
-        else if(J_3<=people_4&&people_4<J_4){
-            $("#J_time").html("4分後");
-            $("#J-information").html(comment_icon2+comment3);
-            $("#J-Number-of-people").html(people_4);
-            $("#J-4").css("border-bottom","3px solid #ffd659");
-            $("#J-4").css("background-color","#ffd659");
-            $("#J-icon").attr("src", "../static/images/icon3.png");
-        }
-        else{
-            $("#J_time").html("4分後");
-            $("#J-information").html(comment_icon2+comment4);
-            $("#J-Number-of-people").html(people_4);
-            $("#J-4").css("border-bottom","3px solid #ff5a4e");
-            $("#J-4").css("background-color","#ff5a4e");
-            $("#J-icon").attr("src", "../static/images/icon4.png");
-        }
-        return count;
-    }else if(count==5){
-        J_data_change();
-        if(J_1<=people_5&&people_5<J_2){
-            $("#J_time").html("5分後");
-            $("#J-information").html(comment_icon2+comment1);
-            $("#J-Number-of-people").html(people_5);
-            $("#J-5").css("border-bottom","3px solid #42a5f5");
-            $("#J-5").css("background-color","#42a5f5");
-            $("#J-icon").attr("src", "../static/images/icon1.png");
-        }
-        else if(J_2<=people_5&&people_5<J_3){
-            $("#J_time").html("5分後");
-            $("#J-information").html(comment_icon2+comment2);
-            $("#J-Number-of-people").html(people_5);
-            $("#J-5").css("border-bottom","3px solid #79d8b8");
-            $("#J-5").css("background-color","#79d8b8");
-            $("#J-icon").attr("src", "../static/images/icon2.png");
-        }
-        else if(J_3<=people_5&&people_5<J_4){
-            $("#J_time").html("5分後");
-            $("#J-information").html(comment_icon2+comment3);
-            $("#J-Number-of-people").html(people_5);
-            $("#J-5").css("border-bottom","3px solid #ffd659");
-            $("#J-5").css("background-color","#ffd659");
-            $("#J-icon").attr("src", "../static/images/icon3.png");
-        }
-        else{
-            $("#J_time").html("5分後");
-            $("#J-information").html(comment_icon2+comment4);
-            $("#J-Number-of-people").html(people_5);
-            $("#J-5").css("border-bottom","3px solid #ff5a4e");
-            $("#J-5").css("background-color","#ff5a4e");
-            $("#J-icon").attr("src", "../static/images/icon4.png");
-        }
-        return count;
-    }else if(count==-1){
-        J_data_change();
-        if(J_1<=people_5&&people_5<J_2){
-            $("#J_time").html("5分後");
-            $("#J-information").html(comment_icon2+comment1);
-            $("#J-Number-of-people").html(people_5);
-            $("#J-5").css("border-bottom","3px solid #42a5f5");
-            $("#J-5").css("background-color","#42a5f5");
-            $("#J-icon").attr("src", "../static/images/icon1.png");
-        }
-        else if(J_2<=people_5&&people_5<J_3){
-            $("#J_time").html("5分後");
-            $("#J-information").html(comment_icon2+comment2);
-            $("#J-Number-of-people").html(people_5);
-            $("#J-5").css("border-bottom","3px solid #79d8b8");
-            $("#J-5").css("background-color","#79d8b8");
-            $("#J-icon").attr("src", "../static/images/icon2.png");
-        }
-        else if(J_3<=people_5&&people_5<J_4){
-            $("#J_time").html("5分後");
-            $("#J-information").html(comment_icon2+comment3);
-            $("#J-Number-of-people").html(people_5);
-            $("#J-5").css("border-bottom","3px solid #ffd659");
-            $("#J-5").css("background-color","#ffd659");
-            $("#J-icon").attr("src", "../static/images/icon3.png");
-        }
-        else{
-            $("#J_time").html("5分後");
-            $("#J-information").html(comment_icon2+comment4);
-            $("#J-Number-of-people").html(people_5);
-            $("#J-5").css("border-bottom","3px solid #ff5a4e");
-            $("#J-5").css("background-color","#ff5a4e");
-            $("#J-icon").attr("src", "../static/images/icon4.png");
-        }
-        return 5;
-    }else{
-        J_data_change();
-        if(J_1<=people_now&&people_now<J_2){
-            $("#J_time").html("現在");
-            $("#J-information").html(comment_icon1+comment1);
-            $("#J-Number-of-people").html(people_now);
-            $("#J-now").css("border-bottom","3px solid #42a5f5");
-            $("#J-now").css("background-color","#42a5f5");
-            $("#J-icon").attr("src", "../static/images/icon1.png");
-        }
-        else if(J_2<=people_now&&people_now<J_3){
-            $("#J_time").html("現在");
-            $("#J-information").html(comment_icon2+comment2);
-            $("#J-Number-of-people").html(people_now);
-            $("#J-now").css("border-bottom","3px solid #79d8b8");
-            $("#J-now").css("background-color","#79d8b8");
-            $("#J-icon").attr("src", "../static/images/icon2.png");
-        }
-        else if(J_3<=people_now&&people_now<J_4){
-            $("#J_time").html("現在");
-            $("#J-information").html(comment_icon2+comment3);
-            $("#J-Number-of-people").html(people_now);
-            $("#J-now").css("border-bottom","3px solid #ffd659");
-            $("#J-now").css("background-color","#ffd659");
-            $("#J-icon").attr("src", "../static/images/icon3.png");
-        }
-        else{
-            $("#J_time").html("現在");
-            $("#J-information").html(comment_icon2+comment4);
-            $("#J-Number-of-people").html(people_now);
-            $("#J-now").css("border-bottom","3px solid #ff5a4e");
-            $("#J-now").css("background-color","#ff5a4e");
-            $("#J-icon").attr("src", "../static/images/icon4.png");
-        }
-        return 0;
+
+    let J_people=[
+        people_now,
+        people_1,
+        people_2,
+        people_3,
+        people_4,
+        people_5,
+    ]
+    let name=[
+        "#J-now",
+        "#J-1",
+        "#J-2",
+        "#J-3",
+        "#J-4",
+        "#J-5",
+    ]
+    let name2=[
+        "現在",
+        "1分後",
+        "2分後",
+        "3分後",
+        "4分後",
+        "5分後",
+    ]
+
+    let border_bottom_style=[
+        {"border-bottom":"3px solid #42a5f5"},
+        {"border-bottom":"3px solid #79d8b8"},
+        {"border-bottom":"3px solid #ffd659"},
+        {"border-bottom":"3px solid #ff5a4e"},
+    ]
+    let background_color_style=[
+        {"background-color":"#42a5f5"},
+        {"background-color":"#79d8b8"},
+        {"background-color":"#ffd659"},
+        {"background-color":"#ff5a4e"},
+    ]
+    let src_style=[
+        {"src":"../static/images/icon1.png"},
+        {"src":"../static/images/icon2.png"},
+        {"src":"../static/images/icon3.png"},
+        {"src":"../static/images/icon4.png"},
+    ]
+
+    if(count==0)J_count=0;
+    else if(count==1)J_count=1;
+    else if(count==2)J_count=2;
+    else if(count==3)J_count=3;
+    else if(count==4)J_count=4;
+    else if(count==5)J_count=5;
+    else if(count==-1)J_count=5;
+    else J_count=0;
+
+    J_data_change(J_people,J_1,J_2,J_3,J_4)
+    if(J_1<=J_people[J_count]&&J_people[J_count]<J_2){
+        $("#J_time").html(name2[J_count]);
+        $("#J-information").html(comment_icon1+comment1);
+        $("#J-Number-of-people").html(J_people[J_count]);
+        $(name[J_count]).css(border_bottom_style[0]);
+        $(name[J_count]).css(background_color_style[0]);
+        $("#J-icon").attr(src_style[0]);
     }
+    else if(J_2<=J_people[J_count]&&J_people[J_count]<J_3){
+        $("#J_time").html(name2[J_count]);
+        $("#J-information").html(comment_icon2+comment2);
+        $("#J-Number-of-people").html(J_people[J_count]);
+        $(name[J_count]).css(border_bottom_style[1]);
+        $(name[J_count]).css(background_color_style[1]);
+        $("#J-icon").attr(src_style[1]);
+    }
+    else if(J_3<=J_people[J_count]&&J_people[J_count]<J_4){
+        $("#J_time").html(name2[J_count]);
+        $("#J-information").html(comment_icon2+comment3);
+        $("#J-Number-of-people").html(J_people[J_count]);
+        $(name[J_count]).css(border_bottom_style[2]);
+        $(name[J_count]).css(background_color_style[2]);
+        $("#J-icon").attr(src_style[2]);
+    }
+    else{
+        $("#J_time").html(name2[J_count]);
+        $("#J-information").html(comment_icon2+comment4);
+        $("#J-Number-of-people").html(J_people[J_count]);
+        $(name[J_count]).css(border_bottom_style[3]);
+        $(name[J_count]).css(background_color_style[3]);
+        $("#J-icon").attr(src_style[3]);
+    }
+    
+    if(0<=count&&count<=5)return count;
+    else if(count==-1)return 5;
+    else return 0;
+
 }
 function Z_change_screeen(count){
     if(count==0){
