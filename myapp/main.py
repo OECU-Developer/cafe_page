@@ -99,11 +99,24 @@ def index():
     else:
         return render_template('index.html', people=people)
 
+@app.route("/map")
+def map():
+    return render_template('map.html')
+
+@app.route("/details")
+def details():
+    return render_template('details.html')
+
+@app.route("/overview")
+def overview():
+    return render_template('overview.html')
+
 @auth.get_password
 def get_pw(username):
     if username in users:
         return users.get(username)
     return None
+
 
 @app.route("/"+str(ADMIN_URL))
 @auth.login_required
@@ -167,6 +180,8 @@ def generate_random_data():
         }
     )
     yield f"data:{json_data}\n\n"
+
+
 
 @app.route("/chart-data")
 def chart_data():

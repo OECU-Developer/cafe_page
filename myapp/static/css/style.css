@@ -307,6 +307,26 @@ g {
   border-bottom: 3px solid #ff5a4e;
 }
 
+#Z-now{
+  border-bottom: 3px solid #42a5f5;
+  background-color: #42a5f5;
+}
+#Z-1{
+  border-bottom: 3px solid #42a5f5;
+}
+#Z-2{
+  border-bottom: 3px solid #79d8b8;
+}
+#Z-3{
+  border-bottom: 3px solid #ffd659;
+}
+#Z-4{
+  border-bottom: 3px solid #ffd659;
+}
+#Z-5{
+  border-bottom: 3px solid #ff5a4e;
+}
+
 
 
 /* 試しマップ */

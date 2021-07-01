@@ -271,9 +271,9 @@ valueInput.addEventListener('change', function(){
 
 
 
-//試し
+//J号館
 function J_data_change(J_people,J_1,J_2,J_3,J_4){
-    let name=[
+    let J_name=[
         "#J-now",
         "#J-1",
         "#J-2",
@@ -292,25 +292,25 @@ function J_data_change(J_people,J_1,J_2,J_3,J_4){
     ]
 
     for(let i=0;i<6;i++){
-        $(name[i]).css(background_color_style[0]);
+        $(J_name[i]).css(background_color_style[0]);
         if(J_1<=J_people[i]&&J_people[i]<J_2){
-            $(name[i]).css(border_bottom_style[0]);
+            $(J_name[i]).css(border_bottom_style[0]);
         }
         else if(J_2<=J_people[i]&&J_people[i]<J_3){
-            $(name[i]).css(border_bottom_style[1]);
+            $(J_name[i]).css(border_bottom_style[1]);
         }
         else if(J_3<=J_people[i]&&J_people[i]<J_4){
-            $(name[i]).css(border_bottom_style[2]);
+            $(J_name[i]).css(border_bottom_style[2]);
         }
         else{
-            $(name[i]).css(border_bottom_style[3]);
+            $(J_name[i]).css(border_bottom_style[3]);
         }
     }
 }
 
-function change_J_people(count){
+function change_J_people(Jcount){
     J_people_data()
-    J_change_screeen(count)
+    J_change_screeen(Jcount)
 }
 
 function J_people_data(){
@@ -319,16 +319,16 @@ function J_people_data(){
     var max = 100 ;
     
     
-    people_now=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-    people_1=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-    people_2=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-    people_3=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-    people_4=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-    people_5=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    J_people_now=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    J_people_1=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    J_people_2=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    J_people_3=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    J_people_4=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    J_people_5=Math.floor( Math.random() * (max + 1 - min) ) + min ;
 
 }
 
-function J_change_screeen(count){
+function J_change_screeen(Jcount){
     J_1=0;
     J_2=50;
     J_3=70;
@@ -344,14 +344,14 @@ function J_change_screeen(count){
     comment4=" 大変、混雑しています";
 
     let J_people=[
-        people_now,
-        people_1,
-        people_2,
-        people_3,
-        people_4,
-        people_5,
+        J_people_now,
+        J_people_1,
+        J_people_2,
+        J_people_3,
+        J_people_4,
+        J_people_5,
     ]
-    let name=[
+    let J_name=[
         "#J-now",
         "#J-1",
         "#J-2",
@@ -387,13 +387,13 @@ function J_change_screeen(count){
         {"src":"../static/images/icon4.png"},
     ]
 
-    if(count==0)J_count=0;
-    else if(count==1)J_count=1;
-    else if(count==2)J_count=2;
-    else if(count==3)J_count=3;
-    else if(count==4)J_count=4;
-    else if(count==5)J_count=5;
-    else if(count==-1)J_count=5;
+    if(Jcount==0)J_count=0;
+    else if(Jcount==1)J_count=1;
+    else if(Jcount==2)J_count=2;
+    else if(Jcount==3)J_count=3;
+    else if(Jcount==4)J_count=4;
+    else if(Jcount==5)J_count=5;
+    else if(Jcount==-1)J_count=5;
     else J_count=0;
 
     J_data_change(J_people,J_1,J_2,J_3,J_4)
@@ -401,64 +401,204 @@ function J_change_screeen(count){
         $("#J_time").html(name2[J_count]);
         $("#J-information").html(comment_icon1+comment1);
         $("#J-Number-of-people").html(J_people[J_count]);
-        $(name[J_count]).css(border_bottom_style[0]);
-        $(name[J_count]).css(background_color_style[0]);
+        $(J_name[J_count]).css(border_bottom_style[0]);
+        $(J_name[J_count]).css(background_color_style[0]);
         $("#J-icon").attr(src_style[0]);
     }
     else if(J_2<=J_people[J_count]&&J_people[J_count]<J_3){
         $("#J_time").html(name2[J_count]);
         $("#J-information").html(comment_icon2+comment2);
         $("#J-Number-of-people").html(J_people[J_count]);
-        $(name[J_count]).css(border_bottom_style[1]);
-        $(name[J_count]).css(background_color_style[1]);
+        $(J_name[J_count]).css(border_bottom_style[1]);
+        $(J_name[J_count]).css(background_color_style[1]);
         $("#J-icon").attr(src_style[1]);
     }
     else if(J_3<=J_people[J_count]&&J_people[J_count]<J_4){
         $("#J_time").html(name2[J_count]);
         $("#J-information").html(comment_icon2+comment3);
         $("#J-Number-of-people").html(J_people[J_count]);
-        $(name[J_count]).css(border_bottom_style[2]);
-        $(name[J_count]).css(background_color_style[2]);
+        $(J_name[J_count]).css(border_bottom_style[2]);
+        $(J_name[J_count]).css(background_color_style[2]);
         $("#J-icon").attr(src_style[2]);
     }
     else{
         $("#J_time").html(name2[J_count]);
         $("#J-information").html(comment_icon2+comment4);
         $("#J-Number-of-people").html(J_people[J_count]);
-        $(name[J_count]).css(border_bottom_style[3]);
-        $(name[J_count]).css(background_color_style[3]);
+        $(J_name[J_count]).css(border_bottom_style[3]);
+        $(J_name[J_count]).css(background_color_style[3]);
         $("#J-icon").attr(src_style[3]);
     }
     
-    if(0<=count&&count<=5)return count;
-    else if(count==-1)return 5;
+    if(0<=Jcount&&Jcount<=5)return Jcount;
+    else if(Jcount==-1)return 5;
     else return 0;
 
 }
-function Z_change_screeen(count){
-    if(count==0){
-        $("#Z_time").html("現在");
-        return count;
-    }else if(count==1){
-        $("#Z_time").html("１分後");
-        return count;
-    }else if(count==2){
-        $("#Z_time").html("2分後");
-        return count;
-    }else if(count==3){
-        $("#Z_time").html("3分後");
-        return count;
-    }else if(count==4){
-        $("#Z_time").html("4分後");
-        return count;
-    }else if(count==5){
-        $("#Z_time").html("5分後");
-        return count;
-    }else if(count==-1){
-        $("#Z_time").html("5分後");
-        return 5;
-    }else{
-        $("#Z_time").html("現在");
-        return 0;
+
+
+//Z号館
+function Z_data_change(Z_people,Z_1,Z_2,Z_3,Z_4){
+    let Z_name=[
+        "#Z-now",
+        "#Z-1",
+        "#Z-2",
+        "#Z-3",
+        "#Z-4",
+        "#Z-5",
+    ]
+    let border_bottom_style=[
+        {"border-bottom":"3px solid #42a5f5"},
+        {"border-bottom":"3px solid #79d8b8"},
+        {"border-bottom":"3px solid #ffd659"},
+        {"border-bottom":"3px solid #ff5a4e"},
+    ]
+    let background_color_style=[
+        {"background-color":"white"},
+    ]
+
+    for(let i=0;i<6;i++){
+        $(Z_name[i]).css(background_color_style[0]);
+        if(Z_1<=Z_people[i]&&Z_people[i]<Z_2){
+            $(Z_name[i]).css(border_bottom_style[0]);
+        }
+        else if(Z_2<=Z_people[i]&&Z_people[i]<Z_3){
+            $(Z_name[i]).css(border_bottom_style[1]);
+        }
+        else if(Z_3<=Z_people[i]&&Z_people[i]<Z_4){
+            $(Z_name[i]).css(border_bottom_style[2]);
+        }
+        else{
+            $(Z_name[i]).css(border_bottom_style[3]);
+        }
     }
 }
+
+function change_Z_people(Zcount){
+    Z_people_data()
+    Z_change_screeen(Zcount)
+}
+
+function Z_people_data(){
+    
+    var min = 0 ;
+    var max = 100 ;
+    
+    
+    Z_people_now=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    Z_people_1=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    Z_people_2=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    Z_people_3=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    Z_people_4=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+    Z_people_5=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+
+}
+
+function Z_change_screeen(Zcount){
+    Z_1=0;
+    Z_2=50;
+    Z_3=70;
+    Z_4=100;
+    
+    //アイコン
+    comment_icon1="<i class='far fa-clock'></i>";
+    comment_icon2="<i class='fas fa-exclamation-triangle'></i>";
+    //コメント
+    comment1=" 空いています";
+    comment2=" やや混雑しています";
+    comment3=" 混雑しています";
+    comment4=" 大変、混雑しています";
+
+    let Z_people=[
+        Z_people_now,
+        Z_people_1,
+        Z_people_2,
+        Z_people_3,
+        Z_people_4,
+        Z_people_5,
+    ]
+    let Z_name=[
+        "#Z-now",
+        "#Z-1",
+        "#Z-2",
+        "#Z-3",
+        "#Z-4",
+        "#Z-5",
+    ]
+    let name2=[
+        "現在",
+        "1分後",
+        "2分後",
+        "3分後",
+        "4分後",
+        "5分後",
+    ]
+
+    let border_bottom_style=[
+        {"border-bottom":"3px solid #42a5f5"},
+        {"border-bottom":"3px solid #79d8b8"},
+        {"border-bottom":"3px solid #ffd659"},
+        {"border-bottom":"3px solid #ff5a4e"},
+    ]
+    let background_color_style=[
+        {"background-color":"#42a5f5"},
+        {"background-color":"#79d8b8"},
+        {"background-color":"#ffd659"},
+        {"background-color":"#ff5a4e"},
+    ]
+    let src_style=[
+        {"src":"../static/images/icon1.png"},
+        {"src":"../static/images/icon2.png"},
+        {"src":"../static/images/icon3.png"},
+        {"src":"../static/images/icon4.png"},
+    ]
+
+    if(Zcount==0)Z_count=0;
+    else if(Zcount==1)Z_count=1;
+    else if(Zcount==2)Z_count=2;
+    else if(Zcount==3)Z_count=3;
+    else if(Zcount==4)Z_count=4;
+    else if(Zcount==5)Z_count=5;
+    else if(Zcount==-1)Z_count=5;
+    else Z_count=0;
+
+    Z_data_change(Z_people,Z_1,Z_2,Z_3,Z_4)
+    if(Z_1<=Z_people[Z_count]&&Z_people[Z_count]<Z_2){
+        $("#Z_time").html(name2[Z_count]);
+        $("#Z-information").html(comment_icon1+comment1);
+        $("#Z-Number-of-people").html(Z_people[Z_count]);
+        $(Z_name[Z_count]).css(border_bottom_style[0]);
+        $(Z_name[Z_count]).css(background_color_style[0]);
+        $("#Z-icon").attr(src_style[0]);
+    }
+    else if(Z_2<=Z_people[Z_count]&&Z_people[Z_count]<Z_3){
+        $("#Z_time").html(name2[Z_count]);
+        $("#Z-information").html(comment_icon2+comment2);
+        $("#Z-Number-of-people").html(Z_people[Z_count]);
+        $(Z_name[Z_count]).css(border_bottom_style[1]);
+        $(Z_name[Z_count]).css(background_color_style[1]);
+        $("#Z-icon").attr(src_style[1]);
+    }
+    else if(Z_3<=Z_people[Z_count]&&Z_people[Z_count]<Z_4){
+        $("#Z_time").html(name2[Z_count]);
+        $("#Z-information").html(comment_icon2+comment3);
+        $("#Z-Number-of-people").html(Z_people[Z_count]);
+        $(Z_name[Z_count]).css(border_bottom_style[2]);
+        $(Z_name[Z_count]).css(background_color_style[2]);
+        $("#Z-icon").attr(src_style[2]);
+    }
+    else{
+        $("#Z_time").html(name2[Z_count]);
+        $("#Z-information").html(comment_icon2+comment4);
+        $("#Z-Number-of-people").html(Z_people[Z_count]);
+        $(Z_name[Z_count]).css(border_bottom_style[3]);
+        $(Z_name[Z_count]).css(background_color_style[3]);
+        $("#Z-icon").attr(src_style[3]);
+    }
+    
+    if(0<=Zcount&&Zcount<=5)return Zcount;
+    else if(Zcount==-1)return 5;
+    else return 0;
+
+}
+
