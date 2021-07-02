@@ -335,7 +335,7 @@ function J_change_screeen(Jcount){
     J_4=100;
     
     //アイコン
-    comment_icon1="<i class='far fa-clock'></i>";
+    comment_icon1="";
     comment_icon2="<i class='fas fa-exclamation-triangle'></i>";
     //コメント
     comment1=" 空いています";
@@ -501,7 +501,7 @@ function Z_change_screeen(Zcount){
     Z_4=100;
     
     //アイコン
-    comment_icon1="<i class='far fa-clock'></i>";
+    comment_icon1="";
     comment_icon2="<i class='fas fa-exclamation-triangle'></i>";
     //コメント
     comment1=" 空いています";
