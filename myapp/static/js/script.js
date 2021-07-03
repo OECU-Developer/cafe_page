@@ -319,7 +319,7 @@ function J_people_data(){
     var max = 100 ;
     
     
-    J_people_now=Math.floor( Math.random() * (max + 1 - min) ) + min ;
+   J_people_now=Math.floor( Math.random() * (max + 1 - min) ) + min ;
     J_people_1=Math.floor( Math.random() * (max + 1 - min) ) + min ;
     J_people_2=Math.floor( Math.random() * (max + 1 - min) ) + min ;
     J_people_3=Math.floor( Math.random() * (max + 1 - min) ) + min ;
@@ -602,3 +602,128 @@ function Z_change_screeen(Zcount){
 
 }
 
+
+
+function change_screen_pc(count){
+    //アイコン
+    comment_icon1="";
+    comment_icon2="<i class='fas fa-exclamation-triangle'></i>";
+    //コメント
+    comment1=" 空いています";
+    comment2=" やや混雑しています";
+    comment3=" 混雑しています";
+    comment4=" 大変、混雑しています";
+    //アイコンpng
+   let src_style=[
+       {"src":"../static/images/icon1.png"},
+       {"src":"../static/images/icon2.png"},
+       {"src":"../static/images/icon3.png"},
+       {"src":"../static/images/icon4.png"},
+   ]
+   //色
+   let background_color_style=[
+       {"background-color":"#42a5f5"},
+       {"background-color":"#79d8b8"},
+       {"background-color":"#ffd659"},
+       {"background-color":"#ff5a4e"},
+       {"background-color":"white"},
+   ]
+
+   let border_bottom_style=[
+       {"border-bottom":"6px solid #42a5f5"},
+       {"border-bottom":"6px solid #79d8b8"},
+       {"border-bottom":"6px solid #ffd659"},
+       {"border-bottom":"6px solid #ff5a4e"},
+   ]
+
+   let name=[
+       ["#J-now","#J-1","#J-5",],
+       ["#Z-now","#Z-1","#Z-5",]
+   ];
+  
+let jz=[
+    ["#J-Number-of-people","#J-icon","#J-information"],
+    ["#Z-Number-of-people","#Z-icon","#Z-information"]
+]
+//混雑度の範囲
+   Z_1=0;
+   Z_2=50;
+   Z_3=70;
+   Z_4=100;
+
+//現在、1分後、5分後の人数   
+let people=[
+    [10,55,75],
+    [100,45,31]
+]
+//borderの色の変更
+ for(j=0;j<2;j++){
+for(i=0;i<3;i++){
+   if(Z_1<=people[j][i]&&people[j][i]<Z_2){
+       $(name[j][i]).css(border_bottom_style[0]);
+   }
+   else if(Z_2<=people[j][i]&&people[j][i]<Z_3){
+       $(name[j][i]).css(border_bottom_style[1]);
+   }
+   else if(Z_3<=people[j][i]&&people[j][i]<Z_4){
+       $(name[j][i]).css(border_bottom_style[2]);
+   }
+   else{
+       $(name[j][i]).css(border_bottom_style[3]);
+   }
+}
+}
+
+for(j=0;j<2;j++){
+for(i=0;i<3;i++){
+if(count==i){
+   $(jz[j][0]).html(people[j][i]);//人数変更
+
+   if(i==0){
+   $(name[j][1]).css(background_color_style[4]);
+   $(name[j][2]).css(background_color_style[4]);
+   }
+   else if(i==1){
+       $(name[j][0]).css(background_color_style[4]);
+       $(name[j][2]).css(background_color_style[4]);
+   }
+   else if(i==2){
+       $(name[j][0]).css(background_color_style[4]);
+       $(name[j][1]).css(background_color_style[4]);
+   }
+
+   if(Z_1<=people[j][i]&&people[j][i]<Z_2){
+       $(name[j][i]).css(background_color_style[0]);
+       $(jz[j][1]).attr(src_style[0]);
+       $(jz[j][2]).html(comment_icon1+comment1);
+       
+         }
+   else if(Z_2<=people[j][i]&&people[j][i]<Z_3){
+       $(name[j][i]).css(background_color_style[1]);
+       $(jz[j][1]).attr(src_style[1]);
+       $(jz[j][2]).html(comment_icon2+comment2);
+   }
+   else if(Z_3<=people[j][i]&&people[j][i]<Z_4){
+       $(name[j][i]).css(background_color_style[2]);
+       $(jz[j][1]).attr(src_style[2]);
+       $(jz[j][2]).html(comment_icon2+comment3);
+   }
+   else{
+       $(name[j][i]).css(background_color_style[3]);
+       $(jz[j][1]).attr(src_style[3]);
+       $(jz[j][2]).html(comment_icon2+comment4);
+   }
+}
+}
+}
+
+   if(count==0){
+       return 1;
+   }
+   else if(count==1){
+       return 2;
+   }
+   else if(count==2){
+       return 0;
+   }
+}
