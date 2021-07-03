@@ -78,8 +78,10 @@
             </div>
         </div>
         <p id="Z-information">現在、やや混雑しています</p>
-        <div>
-
+            <div class="line-content">
+                <p id="Z-now">現 在</p>
+                <p id="Z-1">1分後</p>
+                <p id="Z-5">5分後</p>
         </div>
             <!-- <input class ="range" type="range"list="my-datalist" min="1"max="6">
             <datalist id="my-datalist">
@@ -98,14 +100,14 @@
 </body>
 
 <script>  
+var count=0;
     setInterval(function () {
-        change_J_people(J_count);
-        //getcurrdata();
-    }, 2000);
+        count=change_screen_pc(count);
+  
+    }, 5000);
     setTimeout(function () {
-        //jChart();
-        //zChart();
-    }, 2000);
+        count=change_screen_pc(count);
+    }, 0);
 </script>
 
 <!-- ここまで -->
