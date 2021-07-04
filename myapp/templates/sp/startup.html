@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>混雑度チェッカー</title><!--titleはタブの名前(Webページのタイトル)-->
+    <link rel="stylesheet" href="static/css/mobile.css" media="screen">
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
+
+    <link href="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
+    <link rel="stylesheet" href="../static/css/jquery.range.css">
+    <script src="../static/js/mobile.js"></script>
+    <script src="../static/js/chart.min.js"></script>
+    <script src="../static/js/chartjs-plugin-streaming.min.js"></script>
+    <script src="../static/js/desvg.min.js"></script>
+    <script src="../static/js/holiday.js"></script>
+    <script src="../static/js/jquery.range.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <meta http-equiv="refresh" content="2 ;url=/home">.
+</head>
+<body>
+  <h1>混雑度チェッカー</h1>
+
+
+  <div class="card-body">
+
+
+      <p id="time">
+        現在時間
+      </p>
+    
+      <p>
+        <span id="view_time"></span>
+    
+      </p>
+    
+      <script type="text/javascript">
+      document.getElementById("view_time").innerHTML = getNow();
+      
+      function getNow() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var mon = now.getMonth()+1; //１を足すこと
+        var day = now.getDate();
+        var hour = now.getHours();
+        var min = now.getMinutes();
+        var sec = now.getSeconds();
+      
+        //出力用
+        var s = year + "年" + mon + "月" + day + "日"; 
+        return s;
+      }
+      </script>
+    
+    <p>
+      <span id="view_clock"></span>
+    
+    </p>
+    
+    <script type="text/javascript">
+      timerID = setInterval('clock()',500); //0.5秒毎にclock()を実行
+      
+      function clock() {
+        document.getElementById("view_clock").innerHTML = getNow();
+      }
+      
+      function getNow() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var mon = now.getMonth()+1; //１を足すこと
+        var day = now.getDate();
+        var hour = now.getHours();
+        var min = now.getMinutes();
+        var sec = now.getSeconds();
+        
+        //出力用
+        var s =  hour + "時" + min + "分" + sec + "秒"; 
+        return s;
+      }
+      
+    </script>
+    
+    
+    
+    
+    
+    
+    <p>
+      <span id="view_today"></span>
+      <a>曜日</a>
+      <a id="weather">「{{weather}}」</a>
+    </p>
+    
+    <script type="text/javascript">
+    document.getElementById("view_today").innerHTML = getToday();
+    
+    function getToday() {
+        var now = new Date();
+        var year = now.getFullYear();
+        var mon = now.getMonth()+1; //１を足すこと
+        var day = now.getDate();
+        var you = now.getDay(); //曜日(0～6=日～土)
+    
+        //曜日の選択肢
+        var youbi = new Array("日","月","火","水","木","金","土");
+        //出力用
+        var s = youbi[you];
+        return s;
+    }
+    </script>
+
+    <p id="heatstroke">{{heatstroke}}</p>
+   
+    <div class="title">
+      <p><span id="j">J</span> 号館  <i class="fas fa-angle-double-right"></i>
+      <img id="J-icon"></p>
+    </div>
+    <div class="title">
+      <p><span id="z">Z</span> 号館  <i class="fas fa-angle-double-right"></i>  <img id="Z-icon"></p>
+    </div>
+
+    <style>
+      .title p{
+        margin-bottom:5px;
+        margin-left: 10%;
+        margin-right: 10%;
+      }
+      .title img{
+        width: 30%;
+      }
+      .title div{
+        display: flex;
+
+      }
+      #heatstroke{
+        background:linear-gradient(transparent 60%, #ff6 60%);
+      }
+      #weather{
+        font-size: 160%;
+      }
+    </style>
+
+  </div>  
+  <p>
+    <a id="1"></a>
+    <a id="2"></a>
+  </p>
+  <p>
+    <a id="3"></a>
+    <a id="4"></a>
+  </p>
+  <p>
+    <a id="5"></a>
+    <a id="6"></a>
+  </p>
+
+
+</body>
+
+<style>
+  body{
+    background-image: url("../static/images/sky.jpg");
+  }
+
+  h1{
+    color: white;
+    margin-top: 8%;
+    margin-bottom: 8%;
+  }
+  .card-body{
+    padding-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  p{
+    text-align: center;
+
+  }
+
+  #time{
+    font-size: 170%;
+    border-bottom: 3px solid #000000;
+  }
+  #view_time{
+    font-size: 180%;
+  }
+  #view_today{
+    font-size: 300%;
+  }
+
+
+</style>
+<script>
+  var count=0;
+  setInterval(function () {
+    if(count==0){
+      $("#1").html("混雑度チェッカーを起動しています...");
+      change_J_people(0)
+      change_Z_people(0)
+    }
+    else if(count==1){
+      $("#2").html("完了.");
+    }
+    else if(count==2){
+      $("#3").html("raspberry piから人数を取得しています...");
+    }
+    else if(count==3){
+      $("#4").html("完了.");
+    }
+    else if(count==4){
+      $("#5").html("5分後での予想を計算しています...");
+    }
+    else if(count==5){
+      $("#6").html("完了.");
+    }
+    count=count+1
+  }, 270);
+
+
+
+</script>
+
+
+</html>
