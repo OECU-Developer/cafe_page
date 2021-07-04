@@ -43,7 +43,7 @@ def info2():
     addr2 = addr2.split()
     addr2 = set(addr2)
     counted = len(list(addr | addr2))
-    counted = int(counted / 0.7366)
+    counted = int((counted - 34.5) / 0.741)
     print(counted)
     print("J 号館の値：" + str(counted))
 
