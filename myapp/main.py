@@ -23,6 +23,8 @@ users = {
 
 ADMIN_URL="960c9ce04ecc10d80106be257e52a3cf73258a2e4633a045b06a922c1de7208f"
 
+addr = {''}
+
 @app.route("/", methods=['POST'])
 def info():
     global addr
@@ -43,6 +45,7 @@ def info2():
     counted = len(list(addr | addr2))
     counted = int(counted / 0.7366)
     print(counted)
+    print("J 号館の値：" + str(counted))
 
     if counted < 0:
         counted = 0
@@ -56,6 +59,8 @@ def info2():
         return render_template('mobile_index.html', addr2=addr2)
     else:
         return render_template('index.html', addr2=addr2)
+
+addr3 = {''}
 
 @app.route("/3", methods=['POST'])
 def info3():
@@ -77,7 +82,7 @@ def info4():
     counted_2 = len(list(addr3 | addr4))
     counted_2 = counted_2
     counted_2 = int(counted_2 / 0.7366)
-    print("/3 の値：" + str(counted_2))
+    print("Z 号館の値：" + str(counted_2))
 
     if counted_2 < 0:
         counted_2 = 0
