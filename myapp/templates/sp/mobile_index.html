@@ -11,7 +11,7 @@
     <link href="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.min.css" rel="stylesheet">
     <script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
     <link rel="stylesheet" href="../static/css/jquery.range.css">
-    <script src="../static/js/script.js"></script>
+    <script src="../static/js/mobile.js"></script>
     <script src="../static/js/chart.min.js"></script>
     <script src="../static/js/chartjs-plugin-streaming.min.js"></script>
     <script src="../static/js/desvg.min.js"></script>
@@ -20,6 +20,7 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body>
+
     <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="/">混雑度チェッカー</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +32,7 @@
                   <a class="nav-link" href="/"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="map"><i class="fas fa-map-marked-alt"></i> MAP</a>
+                    <a class="nav-link" href="/map"><i class="fas fa-map-marked-alt"></i> MAP</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/details"><i class="fas fa-utensils"></i> J号館</a>
@@ -91,7 +92,7 @@
         <!--Z号館側-->
     <div class="card-body" id="Z_content1">
         <div class="title">
-            <p><span id="z">Z</span> 号館１階食堂</p>
+            <p><span id="z">Z</span> 号館2階食堂</p>
         </div>
         <div class="card-content">
             <div>
@@ -203,6 +204,7 @@
         //getcurrdata();
     }, 2000);
     setTimeout(function () {
+        
         //jChart();
         //zChart();
     }, 2000);

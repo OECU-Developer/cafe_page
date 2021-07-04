@@ -7,7 +7,7 @@
     <title>混雑度チェッカー</title><!--titleはタブの名前(Webページのタイトル)-->
     <link rel="stylesheet" href="static/css/mobile.css" media="screen">
     <script src="../static/js/jquery-3.6.0.min.js"></script>
-    <script src="../static/js/script.js"></script>
+    <script src="../static/js/mobile.js"></script>
     <script src="../static/js/chart.min.js"></script>
     <script src="../static/js/chartjs-plugin-streaming.min.js"></script>
     <script src="../static/js/desvg.min.js"></script>
@@ -39,9 +39,167 @@
         </ul>
     </div>
   </nav>
-  <div class="map">
+
+    <svg viewBox = "0 0 297 210">
+
+        <!--　① 左側の画像エリア　-->
+        <g id = "leftimg">
+        <image xlink:href = "../static/images/empty.png"/>
+        <image xlink:href = "../static/images/crowded.png"/>
+        <image xlink:href = "../static/images/little_crowded.png"/>
+        </g>
+        
+        <!--　② 右側の画像エリア　-->
+        <g id = "rightimg">
+        </g>
+        
+        <!--　③ clip用の長方形　-->
+        <clipPath id = "leftclip">
+        <rect width = "50%" height = "100%"/>
+        </clipPath>
+        <clipPath id = "rightclip">
+        <rect x = "50%" width = "50%" height = "100%"/>
+        </clipPath>
+        
+    </svg>
+    <div id = "buttonarea">
+
+        <!--　⑩ onclickイベントをつけておく　-->
+        <button id = "modoru" onclick = "modoru()"> ◀︎ </button>
+        <button id = "susumu" onclick = "susumu()"> ▶︎ </button>
+        
+    </div>
+
+
+    <style>
+        svg {
+
+            height:auto;
+            width:60%;
+            display:block;
+            margin:0 auto;
+            overflow:visible;
+        }
+
+
+        <!--　⑤ 読み込んだimg　-->
+        image {
+
+            height:100%;
+            width:100%;
+            transform-origin:center;
+        }
+
+
+        <!--　⑥ 左右をクリップ　-->
+        #leftimg image {
+
+            clip-path:url(#leftclip);
+        }
+
+
+        #rightimg image {
+
+            clip-path:url(#rightclip);
+        }
+        #buttonarea {
+
+            display:flex;
+            width:80%;
+            margin:0 auto;
+        }
+
+
+        button {
+
+            width:100%;
+            background-color:transparent;
+            border:none;
+            margin-top:1em;
+            padding:0;
+            font-size:2em;
+            color:#222;
+        }
+
+    </style>
+
+
+    <script>
+        // ⑦ 左右の画像グループを取得
+        const leftimg = document.getElementById("leftimg");
+        const rightimg = document.getElementById("rightimg");
+
+        // ⑧ 子要素を複製して格納
+        for(i = leftimg.children.length; i>0; i--) {
+            let clone = leftimg.children[(i-1)].cloneNode(true);
+            rightimg.appendChild(clone);
+        }
+
+        // ⑨ 左の最背面以外の画像を立ち上げ
+        for(i=1; i<leftimg.children.length; i++) {
+
+            leftimg.children[i].style.transform = "rotateY(-90deg)";
+        }
+
+        
+        // ⑪ 現在のページを管理するためのフラグ
+        let flag = 1;
+
+        // ⑫ タイミングオブジェクト
+        let timing = {
+            duration:1000,
+            fill:"forwards",
+            direction:"normal"
+        };
+
+        // ⑬ キーフレーム
+        let keyframeL = [
+            {transform:"rotateY(-90deg) skewY(20deg)"},
+            {transform:"rotateY(-90deg) skewY(20deg)"},
+            {transform:"rotateY(0deg) skewY(0deg)"}
+        ];
+
+        let keyframeR = [
+            {transform:"rotateY(0deg) skewY(0deg)"},
+            {transform:"rotateY(90deg) skewY(-20deg)"},
+            {transform:"rotateY(90deg) skewY(-20deg)"}
+        ];
+
+        // ⑭ 「進む」関数
+        function susumu() {
+
+            if (flag < rightimg.children.length) {
+                    timing.direction = "normal";
+                    rightimg.children[(rightimg.children.length)-(flag)].animate(keyframeR,timing);
+                    leftimg.children[flag].animate(keyframeL,timing);
+                    flag++;
+            } else {
+                    return;
+            }
+        };
+
+        // ⑮ 「戻る」関数
+        function modoru() {
+
+            if(flag > 1) {
+                    timing.direction = "reverse";
+                    leftimg.children[flag-1].animate(keyframeL,timing);
+                    rightimg.children[(rightimg.children.length)-(flag-1)].animate(keyframeR,timing);
+                    flag--;
+            } else {
+                    return;
+            }
+        };
+
+
+
+    </script>
+
+
+  <!-- <div class="map">
     <img src="../static/images/map.png">
-  </div>
+  </div> -->
+  
 <!-- <div id="title">
         <h1>混雑度チェッカー</h1>
     </div> -->
