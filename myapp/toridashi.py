@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request, json, jsonify
 from models.models import SensorCurrent
 from models.database import db_session
+import datetime
 import csv
 
 print("実行中...")
@@ -14,6 +14,10 @@ for user in users:
     date = date.strftime('%Y-%m-%d %H:%M:%S')
     print(j, z, date)
 
-with open('output.csv', 'w') as f:
+d_today = datetime.date.today()
+
+csv_name = str(d_today) + ".csv"
+
+with open(csv_name, 'w') as f:
     writer = csv.writer(f)
     writer.writerow([j, z, date])
