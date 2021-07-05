@@ -104,7 +104,7 @@ h1{
   flex-wrap: wrap;
   justify-content: center;
   width: 90%;
-  margin: auto;
+  /* margin: auto; */
   margin-top: 15px;
 }
 
@@ -222,10 +222,10 @@ g {
 } */
 .card-body{
   background-color: white;
-  margin: auto;
-  margin-left: 10%;
-  margin-right: 10%;
-  /* width: 90%; */
+  /* margin: auto; */
+  margin-left: 5%;
+  /* margin-right: -10%; */
+  width:45%;
   margin-top: 15px;
   margin-bottom: 15px;
   padding-top: 0;
