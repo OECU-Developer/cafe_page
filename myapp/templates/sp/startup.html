@@ -195,8 +195,8 @@
   setInterval(function () {
     if(count==0){
       $("#1").html("混雑度チェッカーを起動しています...");
-      change_J_people(0)
-      change_Z_people(0)
+      J_change_screeen(0)
+      Z_change_screeen(0)
     }
     else if(count==1){
       $("#2").html("完了.");
@@ -215,7 +215,9 @@
     }
     count=count+1
   }, 270);
-
+  setTimeout(function () {
+        getcurrdata();
+  }, 0);
 
 
 </script>
