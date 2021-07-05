@@ -6,6 +6,10 @@ from datetime import datetime
 import random
 import flask_devices
 import time
+import urllib3
+from bs4 import BeautifulSoup
+import requests
+
 
 app = Flask(__name__, instance_path='/instance')
 app.config.from_pyfile('app.cfg', silent=True)
@@ -32,9 +36,11 @@ def info():
     addr = addr.split()
     addr = set(addr)
     if request.DEVICE == 'mobile':
+
         return render_template('mobile_index.html', addr=addr)
     else:
         return render_template('index.html', addr=addr)
+
 
 @app.route("/2", methods=['POST'])
 def info2():
@@ -96,13 +102,54 @@ def info4():
     else:
         return render_template('index.html', addr4=addr4)
 
+
+
 @app.route("/")
 def index():
     people = SensorCurrent.query.first()
     if request.DEVICE == 'mobile':
-        return render_template('mobile_index.html', people=people)
+        #アクセスするURL
+        url = 'https://weather.yahoo.co.jp/weather/jp/27/6200.html'
+        http = urllib3.PoolManager()
+        instance = http.request('GET', url)
+        soup = BeautifulSoup(instance.data, 'html.parser')
+        nettyusyo_today = soup.select_one('#main > div.mdheatstrokeInduction > div.mdheatstroke_contents > ul > li > dl > dd > p.comment')
+        #tenki.jpの目的の地域のページのURL（今回は東京都調布市）
+        url = 'https://tenki.jp/forecast/6/30/6200/27215/'
+        r = requests.get(url)
+        """
+        proxies = {
+            "http":"http://proxy.xxx.xxx.xxx:8080",
+            "https":"http://proxy.xxx.xxx.xxx:8080"
+        }
+        r = requests.get(url, proxies=proxies)
+        """
+        #HTMLの解析
+        bsObj = BeautifulSoup(r.content, "html.parser")
+        #今日の天気を取得
+        today = bsObj.find(class_="today-weather")
+        today_weather = today.p.string
+        #明日の天気を取得
+        tomorrow = bsObj.find(class_="tomorrow-weather")
+        tomorrow_weather = tomorrow.p.string
+        #気温情報のまとまり
+        temp=today.div.find(class_="date-value-wrap")
+
+        #気温の取得
+        temp=temp.find_all("dd")
+        temp_max = temp[0].span.string #最高気温
+        temp_max_diff=temp[1].string #最高気温の前日比
+        temp_min = temp[2].span.string #最低気温
+        temp_min_diff=temp[3].string #最低気温の前日比
+
+        return render_template('startup.html', people=people,heatstroke=nettyusyo_today.text,weather=today_weather)
     else:
         return render_template('index.html', people=people)
+
+@app.route("/home")
+def home():
+    people = SensorCurrent.query.first()
+    return render_template('mobile_index.html', people=people)       
 
 @app.route("/map")
 def map():
