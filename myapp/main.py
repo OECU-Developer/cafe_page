@@ -214,9 +214,28 @@ def getCurrData():
     db_session.close()
     people = SensorCurrent.query.first()
 
+    J_people=[
+        10,
+        30,
+        50,
+        70,
+        100,
+        120
+    ]
+    Z_people=[
+        10,
+        30,
+        50,
+        70,
+        100,
+        120
+    ]
+
     json_data = {
-        'j_merged_num': people.j_merged_num,
-        'z_merged_num': people.z_merged_num
+        # 'j_merged_num': people.j_merged_num,
+        # 'z_merged_num': people.z_merged_num
+        'j_merged_num': J_people,
+        'z_merged_num': Z_people
     }
 
     print(json_data)

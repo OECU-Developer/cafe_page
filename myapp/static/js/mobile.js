@@ -3,6 +3,7 @@ window.addEventListener('load', function(){
 });
 
 var isHoliday;
+let people_all=[]
 window.onload = function () {
 var today = new Date();
 var year = today.getFullYear();
@@ -28,46 +29,11 @@ function getcurrdata() {
       // データ取得成功
       console.log("success");
       // JSONからデータ抽出
-      var json_data = JSON.parse(people.Result);
-      const j_merged_num = json_data.j_merged_num;
-      const z_merged_num = json_data.z_merged_num;
-      const date = json_data.date;
+      people_all = JSON.parse(people.Result);
+      
 
-      // if (j_merged_num < 50 && j_merged_num >= 0) {
-      //     $("#j_merged_num").attr("src", "../static/images/empty.png");
-      //     $("#j-title").css("background-color","#42a5f5");
-      // } else if (j_merged_num < 70 && j_merged_num >= 50) {
-      //     $("#j_merged_num").attr("src", "../static/images/little_empty.png");
-      //     $("#j-title").css("background-color","#79d8b8");
-      // } else if (j_merged_num < 100 && j_merged_num >= 70) {
-      //     $("#j_merged_num").attr("src", "../static/images/little_crowded.png");
-      //     $("#j-title").css("background-color","#ffd659");
-      // } else if (j_merged_num < 1000 && j_merged_num >= 100) {
-      //     $("#j_merged_num").attr("src", "../static/images/crowded.png");
-      //     $("#j-title").css("background-color","#ff5a4e");
-      // } else {
-      //     $("#j_merged_num").html("Sorry...No Content");
-      // }
-
-      // $("#h2_j_merged_num").html("推定人数：" + j_merged_num);
-
-      // if (z_merged_num < 50 && z_merged_num >= 0) {
-      //     $("#z_merged_num").attr("src", "../static/images/empty.png");
-      //     $("#z-title").css("background-color","#42a5f5");
-      // } else if (z_merged_num < 70 && z_merged_num >= 50) {
-      //     $("#z_merged_num").attr("src", "../static/images/little_empty.png");
-      //     $("#z-title").css("background-color","#79d8b8");
-      // } else if (z_merged_num < 100 && z_merged_num >= 70) {
-      //     $("#z_merged_num").attr("src", "../static/images/little_crowded.png");
-      //     $("#z-title").css("background-color","#ffd659");
-      // } else if (z_merged_num < 1000 && z_merged_num >= 100) {
-      //     $("#z_merged_num").attr("src", "../static/images/crowded.png");
-      //     $("#z-title").css("background-color","#ff5a4e");
-      // } else {
-      //     $("#z_merged_num").html("Sorry...No Content");
-      // }
-
-    $("#h2_z_merged_num").html("推定人数：" + z_merged_num);
+        
+      
 
   })
   .fail( (people) => {
@@ -308,28 +274,9 @@ function J_data_change(J_people,J_1,J_2,J_3,J_4){
   }
 }
 
-function change_J_people(Jcount){
-  J_people_data()//ランダムな値を入れる
-  J_change_screeen(Jcount)//背景をホワイトにして、下線の色を付ける,背景を付ける
-}
 
-function J_people_data(){
-  
-  var min = 0 ;
-  var max = 100 ;
-  
-  
-  J_people_now=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-  J_people_1=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-  J_people_2=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-  J_people_3=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-  J_people_4=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-  J_people_5=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-
-}
 
 function J_change_screeen(Jcount){
-
   J_1=0;
   J_2=50;
   J_3=70;
@@ -344,14 +291,7 @@ function J_change_screeen(Jcount){
   comment3=" 混雑しています";
   comment4=" 大変、混雑しています";
 
-  let J_people=[
-      J_people_now,
-      J_people_1,
-      J_people_2,
-      J_people_3,
-      J_people_4,
-      J_people_5,
-  ]
+  let J_people=people_all.j_merged_num
   let J_name=[
       "#J-now",
       "#J-1",
@@ -475,25 +415,6 @@ function Z_data_change(Z_people,Z_1,Z_2,Z_3,Z_4){
   }
 }
 
-function change_Z_people(Zcount){
-  Z_people_data()
-  Z_change_screeen(Zcount)
-}
-
-function Z_people_data(){
-  
-  var min = 0 ;
-  var max = 100 ;
-  
-  
-  Z_people_now=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-  Z_people_1=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-  Z_people_2=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-  Z_people_3=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-  Z_people_4=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-  Z_people_5=Math.floor( Math.random() * (max + 1 - min) ) + min ;
-
-}
 
 function Z_change_screeen(Zcount){
   Z_1=0;
@@ -510,14 +431,7 @@ function Z_change_screeen(Zcount){
   comment3=" 混雑しています";
   comment4=" 大変、混雑しています";
 
-  let Z_people=[
-      Z_people_now,
-      Z_people_1,
-      Z_people_2,
-      Z_people_3,
-      Z_people_4,
-      Z_people_5,
-  ]
+  let Z_people=people_all.z_merged_num
   let Z_name=[
       "#Z-now",
       "#Z-1",
