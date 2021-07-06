@@ -7,6 +7,9 @@ body{
     background: #E5E5E5E5;
     /* text-align: center; */
     font-family: 'Roboto-Regular';
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
 }
 h1{
     text-align: center;
@@ -104,8 +107,11 @@ h1{
   flex-wrap: wrap;
   justify-content: center;
   width: 90%;
+  height: 100%;
   /* margin: auto; */
-  margin-top: 15px;
+  /* margin-top: 15px; */
+  margin: 0 auto;
+  padding: calc((100vh - 480px) / 2) 0;
 }
 
 #j-container {
@@ -221,13 +227,10 @@ g {
       content:"";
 } */
 .card-body{
+  margin: 0 10px;
   background-color: white;
-  /* margin: auto; */
-  margin-left: 5%;
-  /* margin-right: -10%; */
+  height: 480px;
   width:45%;
-  margin-top: 15px;
-  margin-bottom: 15px;
   padding-top: 0;
   border-radius: 5px;
 }
@@ -420,5 +423,3 @@ g {
 .tab-switch {
 	display: none;
 }
-
-
