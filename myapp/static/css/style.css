@@ -107,11 +107,9 @@ h1{
   flex-wrap: wrap;
   justify-content: center;
   width: 90%;
-  height: 100%;
   /* margin: auto; */
   /* margin-top: 15px; */
   margin: 0 auto;
-  padding: calc((100vh - 480px) / 2) 0;
 }
 
 #j-container {
@@ -227,9 +225,8 @@ g {
       content:"";
 } */
 .card-body{
-  margin: 0 10px;
+  margin: 0 20px;
   background-color: white;
-  height: 480px;
   width:45%;
   padding-top: 0;
   border-radius: 5px;

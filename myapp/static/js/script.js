@@ -14,6 +14,13 @@ window.onload = function () {
     isHoliday = 0;
   }
   else isHoliday = 1;
+
+  //上下中央揃え
+  let container = $(".container-wrapper")
+  container.css("padding", `${($(window).height() - container.height()) / 2}px 0`)
+  window.addEventListener("resize", ()=>{
+    container.css("padding", `${($(window).height() - container.height()) / 2}px 0`)
+  })
 }
 
 
