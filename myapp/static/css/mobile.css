@@ -264,6 +264,80 @@ g {
   font-size: 40px;
 }
 
+.information-left{
+  float: left;
+}
+.information-right{
+  float: right;
+}
+.information-left fas{
+  display:block;
+  width:10px;
+  animation:1s ease-in 1s infinite alternate forwards running expansion;
+}
+@keyframes expansion{
+  0%{
+    width:10px;
+  }
+  100%{
+    width:13px;
+
+  }
+}
+.yureru-s1 {
+  animation: yureru-s1 2s infinite;
+}
+@keyframes yureru-s1 {
+  0% {
+      transform: translate(2px, 0px);
+  }
+  5% {
+      transform: translate(-2px, 0px);
+  }
+  10% {
+      transform: translate(2px, 0px);
+  }
+  15% {
+      transform: translate(-2px, 0px);
+  }
+  20% {
+      transform: translate(2px, 0px);
+  }
+  25% {
+      transform: translate(-2px, 0px);
+  }
+  30% {
+      transform: translate(0px, 0px);
+  }
+}
+
+.yureru-s2 {
+  animation: yureru-s2 2s infinite;
+}
+@keyframes yureru-s2 {
+  0% {
+      transform: translate(-2px, 0px);
+  }
+  5% {
+      transform: translate(2px, 0px);
+  }
+  10% {
+      transform: translate(-2px, 0px);
+  }
+  15% {
+      transform: translate(2px, 0px);
+  }
+  20% {
+      transform: translate(-2px, 0px);
+  }
+  25% {
+      transform: translate(2px, 0px);
+  }
+  30% {
+      transform: translate(0px, 0px);
+  }
+}
+
 #J-information{
   text-align: center;
 }
@@ -284,8 +358,8 @@ g {
   background-color: white;
   /* border-bottom: 4px solid black; */
   margin-bottom: 0;
-  padding-right: 2px;
-  padding-left: 2px;
+  padding-right: 1%;
+  padding-left: 1%;
 }
 #J-now{
   border-bottom: 3px solid #42a5f5;
