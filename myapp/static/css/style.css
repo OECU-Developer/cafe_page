@@ -10,6 +10,8 @@ body{
 }
 h1{
     text-align: center;
+    font-size: 450%;
+    margin-top:2%;
 }
 
 /* @media screen and (min-width:769px){
@@ -103,9 +105,9 @@ h1{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 90%;
+  /* width: 90%; */
   /* margin: auto; */
-  margin-top: 15px;
+  
 }
 
 #j-container {
@@ -154,14 +156,14 @@ g {
   stroke: #2c2c2c;
   stroke-width: 10;
   stroke-dasharray: 12;
-  size: 10%;
+  
 }
 
 .desvg svg {
-  stroke: "red";
+  /* stroke: "red";
   stroke-linecap: "round";
   stroke-width: "1";
-  stroke-dasharray: "5,5";
+  stroke-dasharray: "5,5"; */
   margin: 10%;
 }
 
@@ -223,13 +225,14 @@ g {
 .card-body{
   background-color: white;
   /* margin: auto; */
-  margin-left: 5%;
-  /* margin-right: -10%; */
+  margin-left:2%;
+  margin-right: 2%;
   width:45%;
-  margin-top: 15px;
+  margin-top: 5%;
   margin-bottom: 15px;
   padding-top: 0;
   border-radius: 5px;
+  
 }
 
 
@@ -280,10 +283,11 @@ g {
   width: 100%;
 }
 .line-content{
-  display: flex;
+   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  background-color: rgba(0, 0, 0, 0.158);
+  background-color: rgba(0, 0, 0, 0.158); 
+  
 }
 .line-content p{
   text-align: center;
@@ -293,7 +297,9 @@ g {
   padding-right: 50px;
   /* border-bottom: 4px solid black; */
   margin-bottom: 0;
-  font-size: 150%;
+  font-size: 175%;
+  padding-left:10%;
+  padding-right:10%;
 }
 #J-now{
   border-bottom: 6px solid #42a5f5;
@@ -309,12 +315,15 @@ g {
 #Z-now{
   border-bottom: 6px solid #42a5f5;
   background-color: #42a5f5;
+  
 }
 #Z-1{
   border-bottom: 6px solid #42a5f5;
+ 
 }
 #Z-5{
   border-bottom: 6px solid #ff5a4e;
+  
 }
 
 
