@@ -19,14 +19,14 @@
 <body>
 
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">混雑度チェッカー</a>
+        <a class="navbar-brand" href="/">混雑度チェッカー  <i class="far fa-clock"></i><span id="view_time"></span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                  <a class="nav-link" href="/"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="/"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/map"><i class="fas fa-map-marked-alt"></i> MAP</a>
@@ -43,15 +43,40 @@
             </ul>
         </div>
     </nav>
-    <!-- <div id="title">
-        <h1>混雑度チェッカー</h1>
-    </div> -->
+    <style>
+        .far{
+            font-size: 70%;
+        }
+        #view_time{
+            font-size: 70%;
+        }
+        .navbar-brand{
+            margin-right: 0;
+        }
+    </style>
+    <script type="text/javascript">
+        timerID = setInterval('clock()',500); //0.5秒毎にclock()を実行
+        
+        function clock() {
+          document.getElementById("view_time").innerHTML = gettime();
+        }
+        
+        function gettime() {
+          var now = new Date();
+          var hour = now.getHours();
+          var min = now.getMinutes();
+          var s =hour + "時" + min + "分現在"; 
+          return s;
+        }
+        
+    </script>
+
     <div class="container-wrapper">
-        <div class="card-body" id="J_content1">
+        <div class="card-body" >
             <div class="title">
                 <p><span id="j">J</span> 号館１階食堂</p>
             </div>
-            <div class="card-content">
+            <div class="card-content" id="J_content1">
                 <div>
                     <img id="J-icon" src="../static/images/icon1.png">
                 </div>
@@ -63,35 +88,27 @@
                     </p>
                 </div>
             </div>
-            <p id="J-information"><i class='far fa-clock'></i> 空いています</p>
-            <div class="line-content">
-                <p id="J-now">現 在</p>
-                <p id="J-1">1分後</p>
-                <p id="J-2">2分後</p>
-                <p id="J-3">3分後</p>
-                <p id="J-4">4分後</p>
-                <p id="J-5">5分後</p>
+            <div>
+                <span class="information-left yureru-s1"><i class="fas fa-angle-double-left"></i></span>
+                <span class="information-right yureru-s2"><i class="fas fa-angle-double-right"></i></span>
+                <p id="J-information">読み込み中...</p>
             </div>
-            <!-- <div id="range"></div> -->
-            <!-- <input type="hidden" class="slider-input" value="23" /> -->
-            <!-- <div class="slider"> -->
-                <!-- <input class ="range" type="range"list="my-datalist" min="1"max="6">
-            <datalist id="my-datalist">
-                <option value="1">
-                <option value="2">
-                <option value="3">
-                <option value="4">
-                <option value="5">
-                <option value="6">
-            </datalist> -->
-        <!-- </div> -->
+
+            <div class="line-content">
+                <p id="J-now" onclick="J_now_onclick()">現 在</p>
+                <p id="J-1" onclick="J_1_onclick()">1分後</p>
+                <p id="J-2" onclick="J_2_onclick()">2分後</p>
+                <p id="J-3" onclick="J_3_onclick()">3分後</p>
+                <p id="J-4" onclick="J_4_onclick()">4分後</p>
+                <p id="J-5" onclick="J_5_onclick()">5分後</p>
+            </div>
     </div>
         <!--Z号館側-->
-    <div class="card-body" id="Z_content1">
+    <div class="card-body">
         <div class="title">
             <p><span id="z">Z</span> 号館2階食堂</p>
         </div>
-        <div class="card-content">
+        <div class="card-content" id="Z_content1">
             <div>
                 <img id="Z-icon" src="../static/images/icon2.png">
             </div>
@@ -103,25 +120,20 @@
                 </p>
             </div>
         </div>
-        <p id="Z-information"><i class='far fa-clock'></i> 空いています</p>
+        <div>
+            <span class="information-left yureru-s1"><i class="fas fa-angle-double-left"></i></span>
+            <span class="information-right yureru-s2"><i class="fas fa-angle-double-right"></i></span>
+            <p id="Z-information">読み込み中...</p>
+        </div>
         <div class="line-content">
-            <p id="Z-now">現 在</p>
-            <p id="Z-1">1分後</p>
-            <p id="Z-2">2分後</p>
-            <p id="Z-3">3分後</p>
-            <p id="Z-4">4分後</p>
-            <p id="Z-5">5分後</p>
+            <p id="Z-now" onclick="Z_now_onclick()">現 在</p>
+            <p id="Z-1" onclick="Z_1_onclick()">1分後</p>
+            <p id="Z-2" onclick="Z_2_onclick()">2分後</p>
+            <p id="Z-3" onclick="Z_3_onclick()">3分後</p>
+            <p id="Z-4" onclick="Z_4_onclick()">4分後</p>
+            <p id="Z-5" onclick="Z_5_onclick()">5分後</p>
         </div>
         </div>
-            <!-- <input class ="range" type="range"list="my-datalist" min="1"max="6">
-            <datalist id="my-datalist">
-                <option value="1">
-                <option value="2">
-                <option value="3">
-                <option value="4">
-                <option value="5">
-                <option value="6">
-            </datalist> -->
     </div>
     <section id="content1"></section>
     <script src="../static/js/jquery-3.6.0.min.js"></script>
@@ -194,6 +206,20 @@
             Z_count=Z_change_screeen(Z_count+1)
         }
     }
+
+    function J_now_onclick(){if(J_count!=0)J_count=J_change_screeen(0);}
+    function J_1_onclick(){if(J_count!=1)J_count=J_change_screeen(1);}
+    function J_2_onclick(){if(J_count!=2)J_count=J_change_screeen(2);}
+    function J_3_onclick(){if(J_count!=3)J_count=J_change_screeen(3);}
+    function J_4_onclick(){if(J_count!=4)J_count=J_change_screeen(4);}
+    function J_5_onclick(){if(J_count!=5)J_count=J_change_screeen(5);}
+    function Z_now_onclick(){if(Z_count!=0)Z_count=Z_change_screeen(0);}
+    function Z_1_onclick(){if(Z_count!=1)Z_count=Z_change_screeen(1);}
+    function Z_2_onclick(){if(Z_count!=2)Z_count=Z_change_screeen(2);}
+    function Z_3_onclick(){if(Z_count!=3)Z_count=Z_change_screeen(3);}
+    function Z_4_onclick(){if(Z_count!=4)Z_count=Z_change_screeen(4);}
+    function Z_5_onclick(){if(Z_count!=5)Z_count=Z_change_screeen(5);}
+
    
     setInterval(function () {
         getcurrdata();
@@ -202,8 +228,6 @@
     }, 2000);
     setTimeout(function () {
         getcurrdata();
-        //jChart();
-        //zChart();
     }, 0);
 </script>
 <!-- ここまで -->
