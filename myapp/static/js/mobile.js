@@ -30,11 +30,6 @@ function getcurrdata() {
       console.log("success");
       // JSONからデータ抽出
       people_all = JSON.parse(people.Result);
-      
-
-        
-      
-
   })
   .fail( (people) => {
       console.log("error");
@@ -517,3 +512,327 @@ function Z_change_screeen(Zcount){
 
 }
 
+//J号館詳細
+function J_details(){
+
+    J_1=0;
+    J_2=50;
+    J_3=70;
+    J_4=100;
+    
+    //アイコン
+    J_details_comment_icon1="<i class='fas fa-exclamation-triangle'></i>";//注意マーク
+    J_details_comment_icon2="<i class='fas fa-arrow-circle-up'></i>"//上
+    J_details_comment_icon3="<i class='fas fa-arrow-circle-down'></i>"//下
+    J_details_comment_icon4="<i class='fas fa-arrow-circle-right'></i>"//横
+
+    //コメント
+    comment1=" 空いています";
+    comment2=" やや混雑しています";
+    comment3=" 混雑しています";
+    comment4=" 大変、混雑しています";
+
+    J_details_comment1="空きあり";
+    J_details_comment2="やや混雑";
+    J_details_comment3=" 混雑中 ";
+    J_details_comment4="大変混雑";
+  
+    let J_people=people_all.j_merged_num
+    let J_details_icon_name=[
+        "#J-details-1-icon",
+        "#J-details-2-icon",
+        "#J-details-3-icon",
+        "#J-details-4-icon",
+        "#J-details-5-icon",
+    ]
+    let J_details_fas_name=[
+        "#J-details-1-fas",
+        "#J-details-2-fas",
+        "#J-details-3-fas",
+        "#J-details-4-fas",
+        "#J-details-5-fas",
+    ]
+    let J_details_comment_name=[
+        "#J-details-1-comment",
+        "#J-details-2-comment",
+        "#J-details-3-comment",
+        "#J-details-4-comment",
+        "#J-details-5-comment",
+    ]
+    let src_style=[
+        {"src":"../static/images/icon1.png"},
+        {"src":"../static/images/icon2.png"},
+        {"src":"../static/images/icon3.png"},
+        {"src":"../static/images/icon4.png"},
+    ]
+    for(i=0;i<5;i++){
+        if(J_1<=J_people[i+1]&&J_people[i+1]<J_2){
+            $(J_details_icon_name[i]).attr(src_style[0]);
+            //アイコン
+            if((J_people[i+1]-J_people[0])>0){
+                if((J_people[i+1]-J_people[0])>=100){
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"+99人");
+                }
+                else{
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"+"+(J_people[i+1]-J_people[0])+"人");
+                }
+            }
+            else if((J_people[i+1]-J_people[0])<0){
+                if((J_people[i+1]-J_people[0])<=-100){
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"-99人");
+                }
+                else{
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+(J_people[i+1]-J_people[0])+"人");
+                }
+            }
+            else{
+                $(J_details_fas_name[i]).html(J_details_comment_icon4+"<br>"+"±0人");
+            }
+            //人数
+            $(J_details_comment_name[i]).html(J_details_comment1);
+            //コメント
+        }
+        else if(J_2<=J_people[i+1]&&J_people[i+1]<J_3){
+            $(J_details_icon_name[i]).attr(src_style[1]);
+            //アイコン
+            if((J_people[i+1]-J_people[0])>0){
+                if((J_people[i+1]-J_people[0])>=100){
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"+99人");
+                }
+                else{
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"+"+(J_people[i+1]-J_people[0])+"人");
+                }
+            }
+            else if((J_people[i+1]-J_people[0])<0){
+                if((J_people[i+1]-J_people[0])<=-100){
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"-99人");
+                }
+                else{
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+(J_people[i+1]-J_people[0])+"人");
+                }
+            }
+            else{
+                $(J_details_fas_name[i]).html(J_details_comment_icon4+"<br>"+"±0人");
+            }
+            //人数
+            $(J_details_comment_name[i]).html(J_details_comment2);
+            //コメント
+        }
+        else if(J_3<=J_people[i+1]&&J_people[i+1]<J_4){
+            $(J_details_icon_name[i]).attr(src_style[2]);
+            //アイコン
+            if((J_people[i+1]-J_people[0])>0){
+                if((J_people[i+1]-J_people[0])>=100){
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"+99人");
+                }
+                else{
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"+"+(J_people[i+1]-J_people[0])+"人");
+                }
+            }
+            else if((J_people[i+1]-J_people[0])<0){
+                if((J_people[i+1]-J_people[0])<=-100){
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"-99人");
+                }
+                else{
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+(J_people[i+1]-J_people[0])+"人");
+                }
+            }
+            else{
+                $(J_details_fas_name[i]).html(J_details_comment_icon4+"<br>"+"±0人");
+            }
+            //人数
+            $(J_details_comment_name[i]).html(J_details_comment3);
+            //コメント
+        }
+        else{
+            $(J_details_icon_name[i]).attr(src_style[3]);
+            //アイコン
+            if((J_people[i+1]-J_people[0])>0){
+                if((J_people[i+1]-J_people[0])>=100){
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"+99人");
+                }
+                else{
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"+"+(J_people[i+1]-J_people[0])+"人");
+                }
+            }
+            else if((J_people[i+1]-J_people[0])<0){
+                if((J_people[i+1]-J_people[0])<=-100){
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"-99人");
+                }
+                else{
+                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+(J_people[i+1]-J_people[0])+"人");
+                }
+            }
+            else{
+                $(J_details_fas_name[i]).html(J_details_comment_icon4+"<br>"+"±0人");
+            }
+            //人数
+            $(J_details_comment_name[i]).html(J_details_comment4);
+            //コメント
+        }
+    }
+
+  }
+
+
+//Z号館詳細
+function Z_details(){
+
+    Z_1=0;
+    Z_2=50;
+    Z_3=70;
+    Z_4=100;
+    
+    //アイコン
+    Z_details_comment_icon1="<i class='fas fa-exclamation-triangle'></i>";//注意マーク
+    Z_details_comment_icon2="<i class='fas fa-arrow-circle-up'></i>"//上
+    Z_details_comment_icon3="<i class='fas fa-arrow-circle-down'></i>"//下
+    Z_details_comment_icon4="<i class='fas fa-arrow-circle-right'></i>"//横
+
+    //コメント
+    comment1=" 空いています";
+    comment2=" やや混雑しています";
+    comment3=" 混雑しています";
+    comment4=" 大変、混雑しています";
+
+    Z_details_comment1="空きあり";
+    Z_details_comment2="やや混雑";
+    Z_details_comment3=" 混雑中 ";
+    Z_details_comment4="大変混雑";
+  
+    let Z_people=people_all.z_merged_num
+    let Z_details_icon_name=[
+        "#Z-details-1-icon",
+        "#Z-details-2-icon",
+        "#Z-details-3-icon",
+        "#Z-details-4-icon",
+        "#Z-details-5-icon",
+    ]
+    let Z_details_fas_name=[
+        "#Z-details-1-fas",
+        "#Z-details-2-fas",
+        "#Z-details-3-fas",
+        "#Z-details-4-fas",
+        "#Z-details-5-fas",
+    ]
+    let Z_details_comment_name=[
+        "#Z-details-1-comment",
+        "#Z-details-2-comment",
+        "#Z-details-3-comment",
+        "#Z-details-4-comment",
+        "#Z-details-5-comment",
+    ]
+    let src_style=[
+        {"src":"../static/images/icon1.png"},
+        {"src":"../static/images/icon2.png"},
+        {"src":"../static/images/icon3.png"},
+        {"src":"../static/images/icon4.png"},
+    ]
+    for(i=0;i<5;i++){
+        if(Z_1<=Z_people[i+1]&&Z_people[i+1]<Z_2){
+            $(Z_details_icon_name[i]).attr(src_style[0]);
+            //アイコン
+            if((Z_people[i+1]-Z_people[0])>0){
+                if((Z_people[i+1]-Z_people[0])>=100){
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"+99人");
+                }
+                else{
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"+"+(Z_people[i+1]-Z_people[0])+"人");
+                }
+            }
+            else if((Z_people[i+1]-Z_people[0])<0){
+                if((Z_people[i+1]-Z_people[0])<=-100){
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"-99人");
+                }
+                else{
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+(Z_people[i+1]-Z_people[0])+"人");
+                }
+            }
+            else{
+                $(Z_details_fas_name[i]).html(Z_details_comment_icon4+"<br>"+"±0人");
+            }
+            //人数
+            $(Z_details_comment_name[i]).html(Z_details_comment1);
+            //コメント
+        }
+        else if(Z_2<=Z_people[i+1]&&Z_people[i+1]<Z_3){
+            $(Z_details_icon_name[i]).attr(src_style[1]);
+            //アイコン
+            if((Z_people[i+1]-Z_people[0])>0){
+                if((Z_people[i+1]-Z_people[0])>=100){
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"+99人");
+                }
+                else{
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"+"+(Z_people[i+1]-Z_people[0])+"人");
+                }
+            }
+            else if((Z_people[i+1]-Z_people[0])<0){
+                if((Z_people[i+1]-Z_people[0])<=-100){
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"-99人");
+                }
+                else{
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+(Z_people[i+1]-Z_people[0])+"人");
+                }
+            }
+            else{
+                $(Z_details_fas_name[i]).html(Z_details_comment_icon4+"<br>"+"±0人");
+            }
+            //人数
+            $(Z_details_comment_name[i]).html(Z_details_comment2);
+            //コメント
+        }
+        else if(Z_3<=Z_people[i+1]&&Z_people[i+1]<Z_4){
+            $(Z_details_icon_name[i]).attr(src_style[2]);
+            //アイコン
+            if((Z_people[i+1]-Z_people[0])>0){
+                if((Z_people[i+1]-Z_people[0])>=100){
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"+99人");
+                }
+                else{
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"+"+(Z_people[i+1]-Z_people[0])+"人");
+                }
+            }
+            else if((Z_people[i+1]-Z_people[0])<0){
+                if((Z_people[i+1]-Z_people[0])<=-100){
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"-99人");
+                }
+                else{
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+(Z_people[i+1]-Z_people[0])+"人");
+                }
+            }
+            else{
+                $(Z_details_fas_name[i]).html(Z_details_comment_icon4+"<br>"+"±0人");
+            }
+            //人数
+            $(Z_details_comment_name[i]).html(Z_details_comment3);
+            //コメント
+        }
+        else{
+            $(Z_details_icon_name[i]).attr(src_style[3]);
+            //アイコン
+            if((Z_people[i+1]-Z_people[0])>0){
+                if((Z_people[i+1]-Z_people[0])>=100){
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"+99人");
+                }
+                else{
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"+"+(Z_people[i+1]-Z_people[0])+"人");
+                }
+            }
+            else if((Z_people[i+1]-Z_people[0])<0){
+                if((Z_people[i+1]-Z_people[0])<=-100){
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"-99人");
+                }
+                else{
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+(Z_people[i+1]-Z_people[0])+"人");
+                }
+            }
+            else{
+                $(Z_details_fas_name[i]).html(Z_details_comment_icon4+"<br>"+"±0人");
+            }
+            //人数
+            $(Z_details_comment_name[i]).html(Z_details_comment4);
+            //コメント
+        }
+    }
+
+  }
