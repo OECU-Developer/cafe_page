@@ -155,9 +155,13 @@ def home():
 def map():
     return render_template('map.html')
 
-@app.route("/details")
-def details():
-    return render_template('details.html')
+@app.route("/J_details")
+def J_details():
+    return render_template('J_details.html')
+
+@app.route("/Z_details")
+def Z_details():
+    return render_template('Z_details.html')
 
 @app.route("/overview")
 def overview():
@@ -224,10 +228,10 @@ def getCurrData():
     ]
     Z_people=[
         10,
-        30,
-        50,
-        70,
-        100,
+        5,
+        54,
+        90,
+        10,
         120
     ]
 
