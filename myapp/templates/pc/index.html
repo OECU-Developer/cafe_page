@@ -32,12 +32,12 @@
                 <div>
                     <p id="J_time">現在</p>
                     <p class="time-people">
-                        <a id="J-Number-of-people">30</a>
+                        <a id="J-Number-of-people">--</a>
                         <a>人</a>
                     </p>
                 </div>
             </div>
-            <p id="J-information">空いています</p>
+            <p id="J-information">読み込み中...</p>
             <div class="line-content">
                 <p id="J-now">現 在</p>
                 <p id="J-1">1分後</p>
@@ -69,12 +69,12 @@
             <div>
                 <p id="Z_time">現在</p>
                 <p class="time-people">
-                    <a id="Z-Number-of-people">60</a>
+                    <a id="Z-Number-of-people">--</a>
                     <a>人</a>
                 </p>
             </div>
         </div>
-        <p id="Z-information">現在、やや混雑しています</p>
+        <p id="Z-information">読み込み中...</p>
             <div class="line-content">
                 <p id="Z-now">現 在</p>
                 <p id="Z-1">1分後</p>
@@ -91,7 +91,7 @@
             </datalist> -->
     </div>
     <section id="content1"></section>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
 </body>
@@ -99,12 +99,16 @@
 <script>  
 var count=0;
     setInterval(function () {
+        getcurrdata() 
         count=change_screen_pc(count);
-  
     }, 5000);
     setTimeout(function () {
-        count=change_screen_pc(count);
+        getcurrdata() 
+        // count=change_screen_pc(count);
     }, 0);
+    setTimeout(function () {
+        count=change_screen_pc(count);
+    }, 500);
 </script>
 
 <!-- ここまで -->
