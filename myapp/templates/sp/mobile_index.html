@@ -72,26 +72,29 @@
     </script>
 
     <div class="container-wrapper">
+        <!--J号館側-->
         <div class="card-body" >
-            <div class="title">
-                <p><span id="j">J</span> 号館１階食堂</p>
-            </div>
-            <div class="card-content" id="J_content1">
-                <div>
-                    <img id="J-icon" src="../static/images/icon1.png">
+            <div id="J_content1">
+                <div class="title">
+                    <p><span id="j">J</span> 号館１階食堂</p>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <img id="J-icon" src="../static/images/icon1.png">
+                    </div>
+                    <div>
+                        <p id="J_time">現在</p>
+                        <p class="time-people">
+                            <a id="J-Number-of-people">30</a>
+                            <a>人</a>
+                        </p>
+                    </div>
                 </div>
                 <div>
-                    <p id="J_time">現在</p>
-                    <p class="time-people">
-                        <a id="J-Number-of-people">30</a>
-                        <a>人</a>
-                    </p>
+                    <span class="information-left yureru-s1"><i class="fas fa-angle-double-left"></i></span>
+                    <span class="information-right yureru-s2"><i class="fas fa-angle-double-right"></i></span>
+                    <p id="J-information">読み込み中...</p>
                 </div>
-            </div>
-            <div>
-                <span class="information-left yureru-s1"><i class="fas fa-angle-double-left"></i></span>
-                <span class="information-right yureru-s2"><i class="fas fa-angle-double-right"></i></span>
-                <p id="J-information">読み込み中...</p>
             </div>
 
             <div class="line-content">
@@ -102,37 +105,39 @@
                 <p id="J-4" onclick="J_4_onclick()">4分後</p>
                 <p id="J-5" onclick="J_5_onclick()">5分後</p>
             </div>
-    </div>
+        </div>
         <!--Z号館側-->
-    <div class="card-body">
-        <div class="title">
-            <p><span id="z">Z</span> 号館2階食堂</p>
-        </div>
-        <div class="card-content" id="Z_content1">
-            <div>
-                <img id="Z-icon" src="../static/images/icon2.png">
+        <div class="card-body">
+            <div id="Z_content1">
+                <div class="title">
+                    <p><span id="z">Z</span> 号館2階食堂</p>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <img id="Z-icon" src="../static/images/icon2.png">
+                    </div>
+                    <div>
+                        <p id="Z_time">現在</p>
+                        <p class="time-people">
+                            <a id="Z-Number-of-people">60</a>
+                            <a>人</a>
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <span class="information-left yureru-s1"><i class="fas fa-angle-double-left"></i></span>
+                    <span class="information-right yureru-s2"><i class="fas fa-angle-double-right"></i></span>
+                    <p id="Z-information">読み込み中...</p>
+                </div>
             </div>
-            <div>
-                <p id="Z_time">現在</p>
-                <p class="time-people">
-                    <a id="Z-Number-of-people">60</a>
-                    <a>人</a>
-                </p>
+            <div class="line-content">
+                <p id="Z-now" onclick="Z_now_onclick()">現 在</p>
+                <p id="Z-1" onclick="Z_1_onclick()">1分後</p>
+                <p id="Z-2" onclick="Z_2_onclick()">2分後</p>
+                <p id="Z-3" onclick="Z_3_onclick()">3分後</p>
+                <p id="Z-4" onclick="Z_4_onclick()">4分後</p>
+                <p id="Z-5" onclick="Z_5_onclick()">5分後</p>
             </div>
-        </div>
-        <div>
-            <span class="information-left yureru-s1"><i class="fas fa-angle-double-left"></i></span>
-            <span class="information-right yureru-s2"><i class="fas fa-angle-double-right"></i></span>
-            <p id="Z-information">読み込み中...</p>
-        </div>
-        <div class="line-content">
-            <p id="Z-now" onclick="Z_now_onclick()">現 在</p>
-            <p id="Z-1" onclick="Z_1_onclick()">1分後</p>
-            <p id="Z-2" onclick="Z_2_onclick()">2分後</p>
-            <p id="Z-3" onclick="Z_3_onclick()">3分後</p>
-            <p id="Z-4" onclick="Z_4_onclick()">4分後</p>
-            <p id="Z-5" onclick="Z_5_onclick()">5分後</p>
-        </div>
         </div>
     </div>
     <section id="content1"></section>
@@ -230,6 +235,4 @@
         getcurrdata();
     }, 0);
 </script>
-<!-- ここまで -->
-
 </html>
