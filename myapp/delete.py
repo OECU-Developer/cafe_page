@@ -10,7 +10,7 @@ print("削除完了")
 print("初期データ挿入中...")
 
 # 初期データ
-data = SensorCurrent(999,999)
+data = SensorCurrent(10,10)
 db_session.add(data)
 db_session.commit()
 db_session.close()

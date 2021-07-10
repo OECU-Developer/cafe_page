@@ -12,7 +12,7 @@ def schedule():
     print("post")
     data = {}
     data["addr"] = addr
-    url = "http://127.0.0.1:5000"
+    url = "http://127.0.0.1:4231"
     try:
         data = urllib.parse.urlencode(data).encode("utf-8")
         req = urllib.request.Request(url, data=data, method="POST")
@@ -28,7 +28,7 @@ def schedule():
     print("post")
     data = {}
     data["addr2"] = addr2
-    url = "http://127.0.0.1:5000/2"
+    url = "http://127.0.0.1:4231/2"
     try:
         data = urllib.parse.urlencode(data).encode("utf-8")
         req = urllib.request.Request(url, data=data, method="POST")
@@ -44,7 +44,7 @@ def schedule():
     print("post")
     data = {}
     data["addr3"] = addr3
-    url = "http://127.0.0.1:5000/3"
+    url = "http://127.0.0.1:4231/3"
     try:
         data = urllib.parse.urlencode(data).encode("utf-8")
         req = urllib.request.Request(url, data=data, method="POST")
@@ -60,7 +60,7 @@ def schedule():
     print("post")
     data = {}
     data["addr4"] = addr4
-    url = "http://127.0.0.1:5000/4"
+    url = "http://127.0.0.1:4231/4"
     try:
         data = urllib.parse.urlencode(data).encode("utf-8")
         req = urllib.request.Request(url, data=data, method="POST")

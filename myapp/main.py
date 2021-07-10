@@ -2,13 +2,16 @@ from flask import Flask, render_template, request, json, jsonify, Response
 from flask_httpauth import HTTPDigestAuth
 from models.models import SensorCurrent
 from models.database import db_session
-from datetime import datetime
+import datetime
 import random
 import flask_devices
 import time
 import urllib3
 from bs4 import BeautifulSoup
 import requests
+import pandas as pd
+import csv
+import pmdarima as pm
 
 
 app = Flask(__name__, instance_path='/instance')
@@ -203,40 +206,105 @@ def admin_post():
 # Ajax処理
 @app.route("/people", methods=['POST'])
 def getCurrData():
-    users = db_session.query(SensorCurrent).first()
+    data1 = db_session.query(SensorCurrent).first()
 
-    j = users.j_merged_num
-    z = users.z_merged_num
-    date = datetime.now()
+    j = data1.j_merged_num
+    z = data1.z_merged_num
+    now = datetime.datetime.now()
 
-    print(j, z, date)
-    data = SensorCurrent(j ,z , date)
+    print(j, z, now)
+    data2 = SensorCurrent(j ,z , now)
 
-    db_session.add(data)
+    db_session.add(data2)
     db_session.commit()
     db_session.close()
+
+
+    users = db_session.query(SensorCurrent).all()
+
+    csv_name =  "output.csv"
+
+    with open(csv_name, 'w') as f:
+        for user in users:
+            j = user.j_merged_num
+            z = user.z_merged_num
+            date = user.date
+            date = date.strftime('%Y-%m-%d %H:%M:%S')
+            writer = csv.writer(f)
+            writer.writerow([j, z, date])
+
+    df = pd.read_csv(csv_name)
+    df.columns = ['j', 'z', 'date']
+
+
+    # datetime 型に変換
+    df["date"] = pd.to_datetime(df["date"])
+    # 1分間にまとめる
+    df = df.groupby(pd.Grouper(key='date', freq='1min')).mean().reset_index()
+    print(df.head(10))
+    # 0埋め
+    df = df.fillna(0)
+
+    # date をインデックスにする
+    df = df.set_index("date")
+
+    # 今日の日付
+    today = datetime.date.today()
+    print(today)
+    
+    # 今日だけを取り出す
+    df = df[str(today):str(today)]
+
+    print(df.head(10))
+
+    print("len(df)："+str(len(df)))
+    print(df.isnull().sum())
+
+    # Fit an ARIMA
+    arima_j = pm.ARIMA(order=(4, 2, 0),seasonal=True,enforce_stationarity=False)
+    arima_j.fit(df["j"])
+
+    arima_z = pm.ARIMA(order=(4, 2, 0),seasonal=True,enforce_stationarity=False)
+    arima_z.fit(df["z"])
+
+    preds_j = arima_j.predict(n_periods=5)
+    print("J 号館の予測：" + str(preds_j))
+
+    preds_z = arima_z.predict(n_periods=5)
+    print("Z 号館の予測：" + str(preds_z))
+
+    j_1 = int(preds_j[0])
+    j_2 = int(preds_j[1])
+    j_3 = int(preds_j[2])
+    j_4 = int(preds_j[3])
+    j_5 = int(preds_j[4])
+
+    z_1 = int(preds_z[0])
+    z_2 = int(preds_z[1])
+    z_3 = int(preds_z[2])
+    z_4 = int(preds_z[3])
+    z_5 = int(preds_z[4])
+
     people = SensorCurrent.query.first()
 
     J_people=[
-        10,
-        14,
-        15,
-        21,
-        44,
-        45
+        people.j_merged_num,
+        j_1,
+        j_2,
+        j_3,
+        j_4,
+        j_5
     ]
     Z_people=[
-        101,
-        60,
-        59,
-        45,
-        44,
-        10
+        people.z_merged_num,
+        z_1,
+        z_2,
+        z_3,
+        z_4,
+        z_5
     ]
 
     json_data = {
-        # 'j_merged_num': people.j_merged_num,
-        # 'z_merged_num': people.z_merged_num
         'j_merged_num': J_people,
         'z_merged_num': Z_people
     }

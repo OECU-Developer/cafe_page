@@ -6,3 +6,5 @@ flask-httpauth
 Flask-Devices
 beautifulsoup4
 urllib3
+pandas
+pmdarima
