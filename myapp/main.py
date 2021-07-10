@@ -86,8 +86,7 @@ def info4():
     addr4 = addr4.split()
     addr4 = set(addr4)
     counted_2 = len(list(addr3 | addr4))
-    counted_2 = counted_2
-    counted_2 = int(counted_2 / 0.7366)
+    counted_2 = int((counted_2 - 27.3) / 0.903)
     print("Z 号館の値：" + str(counted_2))
 
     if counted_2 < 0:
