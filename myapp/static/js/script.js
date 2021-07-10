@@ -274,11 +274,10 @@ let jz=[
     ["#Z-Number-of-people","#Z-icon","#Z-information"]
 ]
 //混雑度の範囲
-   Z_1=0;
-   Z_2=50;
-   Z_3=70;
-   Z_4=100;
-
+   let range=[
+       [0,15,20,45], //ｊ号館
+       [0,45,60,100]//z号館
+   ]
 //現在、1分後、5分後の人数   
 
 let j_people=people_all.j_merged_num
@@ -288,16 +287,17 @@ let people=[
     [j_people[0],j_people[1],j_people[5]],
     [z_people[0],z_people[1],z_people[5]]
 ]
+
 //borderの色の変更
  for(j=0;j<2;j++){
 for(i=0;i<3;i++){
-   if(Z_1<=people[j][i]&&people[j][i]<Z_2){
+   if(range[j][0]<=people[j][i]&&people[j][i]<range[j][1]){
        $(name[j][i]).css(border_bottom_style[0]);
    }
-   else if(Z_2<=people[j][i]&&people[j][i]<Z_3){
+   else if(range[j][1]<=people[j][i]&&people[j][i]<range[j][2]){
        $(name[j][i]).css(border_bottom_style[1]);
    }
-   else if(Z_3<=people[j][i]&&people[j][i]<Z_4){
+   else if(range[j][2]<=people[j][i]&&people[j][i]<range[j][3]){
        $(name[j][i]).css(border_bottom_style[2]);
    }
    else{
@@ -324,18 +324,18 @@ if(count==i){
        $(name[j][1]).css(background_color_style[4]);
    }
 
-   if(Z_1<=people[j][i]&&people[j][i]<Z_2){
+   if(range[j][0]<=people[j][i]&&people[j][i]<range[j][1]){
        $(name[j][i]).css(background_color_style[0]);
        $(jz[j][1]).attr(src_style[0]);
        $(jz[j][2]).html(comment_icon1+comment1);
        
          }
-   else if(Z_2<=people[j][i]&&people[j][i]<Z_3){
+   else if(range[j][1]<=people[j][i]&&people[j][i]<range[j][2]){
        $(name[j][i]).css(background_color_style[1]);
        $(jz[j][1]).attr(src_style[1]);
        $(jz[j][2]).html(comment_icon2+comment2);
    }
-   else if(Z_3<=people[j][i]&&people[j][i]<Z_4){
+   else if(range[j][2]<=people[j][i]&&people[j][i]<range[j][3]){
        $(name[j][i]).css(background_color_style[2]);
        $(jz[j][1]).attr(src_style[2]);
        $(jz[j][2]).html(comment_icon2+comment3);
