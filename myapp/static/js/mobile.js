@@ -273,9 +273,9 @@ function J_data_change(J_people,J_1,J_2,J_3,J_4){
 
 function J_change_screeen(Jcount){
   J_1=0;
-  J_2=50;
-  J_3=70;
-  J_4=100;
+  J_2=15;
+  J_3=20;
+  J_4=45;
   
   //アイコン
   comment_icon1="";
@@ -413,8 +413,8 @@ function Z_data_change(Z_people,Z_1,Z_2,Z_3,Z_4){
 
 function Z_change_screeen(Zcount){
   Z_1=0;
-  Z_2=50;
-  Z_3=70;
+  Z_2=45;
+  Z_3=60;
   Z_4=100;
   
   //アイコン
@@ -516,9 +516,9 @@ function Z_change_screeen(Zcount){
 function J_details(){
 
     J_1=0;
-    J_2=50;
-    J_3=70;
-    J_4=100;
+    J_2=15;
+    J_3=20;
+    J_4=45;
     
     //アイコン
     J_details_comment_icon1="<i class='fas fa-exclamation-triangle'></i>";//注意マーク
@@ -579,10 +579,10 @@ function J_details(){
             }
             else if((J_people[i+1]-J_people[0])<0){
                 if((J_people[i+1]-J_people[0])<=-100){
-                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"-99人");
+                    $(J_details_fas_name[i]).html(J_details_comment_icon3+"<br>"+"-99人");
                 }
                 else{
-                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+(J_people[i+1]-J_people[0])+"人");
+                    $(J_details_fas_name[i]).html(J_details_comment_icon3+"<br>"+(J_people[i+1]-J_people[0])+"人");
                 }
             }
             else{
@@ -605,10 +605,10 @@ function J_details(){
             }
             else if((J_people[i+1]-J_people[0])<0){
                 if((J_people[i+1]-J_people[0])<=-100){
-                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"-99人");
+                    $(J_details_fas_name[i]).html(J_details_comment_icon3+"<br>"+"-99人");
                 }
                 else{
-                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+(J_people[i+1]-J_people[0])+"人");
+                    $(J_details_fas_name[i]).html(J_details_comment_icon3+"<br>"+(J_people[i+1]-J_people[0])+"人");
                 }
             }
             else{
@@ -631,10 +631,10 @@ function J_details(){
             }
             else if((J_people[i+1]-J_people[0])<0){
                 if((J_people[i+1]-J_people[0])<=-100){
-                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"-99人");
+                    $(J_details_fas_name[i]).html(J_details_comment_icon3+"<br>"+"-99人");
                 }
                 else{
-                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+(J_people[i+1]-J_people[0])+"人");
+                    $(J_details_fas_name[i]).html(J_details_comment_icon3+"<br>"+(J_people[i+1]-J_people[0])+"人");
                 }
             }
             else{
@@ -657,10 +657,10 @@ function J_details(){
             }
             else if((J_people[i+1]-J_people[0])<0){
                 if((J_people[i+1]-J_people[0])<=-100){
-                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+"-99人");
+                    $(J_details_fas_name[i]).html(J_details_comment_icon3+"<br>"+"-99人");
                 }
                 else{
-                    $(J_details_fas_name[i]).html(J_details_comment_icon2+"<br>"+(J_people[i+1]-J_people[0])+"人");
+                    $(J_details_fas_name[i]).html(J_details_comment_icon3+"<br>"+(J_people[i+1]-J_people[0])+"人");
                 }
             }
             else{
@@ -679,9 +679,9 @@ function J_details(){
 function Z_details(){
 
     Z_1=0;
-    Z_2=50;
-    Z_3=70;
-    Z_4=100;
+    Z_2=45;
+    Z_3=60;
+    Z_4=00;
     
     //アイコン
     Z_details_comment_icon1="<i class='fas fa-exclamation-triangle'></i>";//注意マーク
@@ -742,10 +742,10 @@ function Z_details(){
             }
             else if((Z_people[i+1]-Z_people[0])<0){
                 if((Z_people[i+1]-Z_people[0])<=-100){
-                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"-99人");
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon3+"<br>"+"-99人");
                 }
                 else{
-                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+(Z_people[i+1]-Z_people[0])+"人");
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon3+"<br>"+(Z_people[i+1]-Z_people[0])+"人");
                 }
             }
             else{
@@ -768,10 +768,10 @@ function Z_details(){
             }
             else if((Z_people[i+1]-Z_people[0])<0){
                 if((Z_people[i+1]-Z_people[0])<=-100){
-                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"-99人");
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon3+"<br>"+"-99人");
                 }
                 else{
-                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+(Z_people[i+1]-Z_people[0])+"人");
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon3+"<br>"+(Z_people[i+1]-Z_people[0])+"人");
                 }
             }
             else{
@@ -794,10 +794,10 @@ function Z_details(){
             }
             else if((Z_people[i+1]-Z_people[0])<0){
                 if((Z_people[i+1]-Z_people[0])<=-100){
-                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"-99人");
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon3+"<br>"+"-99人");
                 }
                 else{
-                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+(Z_people[i+1]-Z_people[0])+"人");
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon3+"<br>"+(Z_people[i+1]-Z_people[0])+"人");
                 }
             }
             else{
@@ -820,10 +820,10 @@ function Z_details(){
             }
             else if((Z_people[i+1]-Z_people[0])<0){
                 if((Z_people[i+1]-Z_people[0])<=-100){
-                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+"-99人");
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon3+"<br>"+"-99人");
                 }
                 else{
-                    $(Z_details_fas_name[i]).html(Z_details_comment_icon2+"<br>"+(Z_people[i+1]-Z_people[0])+"人");
+                    $(Z_details_fas_name[i]).html(Z_details_comment_icon3+"<br>"+(Z_people[i+1]-Z_people[0])+"人");
                 }
             }
             else{
