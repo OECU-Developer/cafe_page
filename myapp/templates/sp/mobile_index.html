@@ -90,20 +90,20 @@
                         </p>
                     </div>
                 </div>
-                <div>
-                    <span class="information-left yureru-s1"><i class="fas fa-angle-double-left"></i></span>
-                    <span class="information-right yureru-s2"><i class="fas fa-angle-double-right"></i></span>
-                    <p class="J-information">読み込み中...</p>
-                </div>
+            </div>
+            <div>
+                <span class="information-left yureru-s1" onclick="J_left_onclick()"><i class="fas fa-angle-double-left"></i></span>
+                <span class="information-right yureru-s2" onclick="J_right_onclick()"><i class="fas fa-angle-double-right"></i></span>
+                <p class="J-information">読み込み中...</p>
             </div>
 
             <div class="line-content">
-                <p class="J-now" onclick="J_now_onclick()">現 在</p>
-                <p class="J-1" onclick="J_1_onclick()">1分後</p>
-                <p class="J-2" onclick="J_2_onclick()">2分後</p>
-                <p class="J-3" onclick="J_3_onclick()">3分後</p>
-                <p class="J-4" onclick="J_4_onclick()">4分後</p>
-                <p class="J-5" onclick="J_5_onclick()">5分後</p>
+                <p class="J-now" id="J-now-click">現 在</p>
+                <p class="J-1" id="J-1-click">1分後</p>
+                <p class="J-2" id="J-2-click">2分後</p>
+                <p class="J-3" id="J-3-click">3分後</p>
+                <p class="J-4" id="J-4-click">4分後</p>
+                <p class="J-5" id="J-5-click">5分後</p>
             </div>
         </div>
         <!--Z号館側-->
@@ -124,22 +124,97 @@
                         </p>
                     </div>
                 </div>
-                <div>
-                    <span class="information-left yureru-s1"><i class="fas fa-angle-double-left"></i></span>
-                    <span class="information-right yureru-s2"><i class="fas fa-angle-double-right"></i></span>
-                    <p class="Z-information">読み込み中...</p>
-                </div>
+            </div>
+            <div>
+                <span class="information-left yureru-s1" onclick="Z_left_onclick()"><i class="fas fa-angle-double-left"></i></span>
+                <span class="information-right yureru-s2" onclick="Z_right_onclick()"><i class="fas fa-angle-double-right"></i></span>
+                <p class="Z-information">読み込み中...</p>
             </div>
             <div class="line-content">
-                <p class="Z-now" onclick="Z_now_onclick()">現 在</p>
-                <p class="Z-1" onclick="Z_1_onclick()">1分後</p>
-                <p class="Z-2" onclick="Z_2_onclick()">2分後</p>
-                <p class="Z-3" onclick="Z_3_onclick()">3分後</p>
-                <p class="Z-4" onclick="Z_4_onclick()">4分後</p>
-                <p class="Z-5" onclick="Z_5_onclick()">5分後</p>
+                <p class="Z-now" id="Z-now-click">現 在</p>
+                <p class="Z-1" id="Z-1-click">1分後</p>
+                <p class="Z-2" id="Z-2-click">2分後</p>
+                <p class="Z-3" id="Z-3-click">3分後</p>
+                <p class="Z-4" id="Z-4-click">4分後</p>
+                <p class="Z-5" id="Z-5-click">5分後</p>
+            </div>
+        </div>    
+    </div>
+
+    <!-- 長押しで表示 -->
+    <section id="J-modalArea" class="modalArea">
+        <div id="J-modalBg" class="modalBg"></div>
+        <div class="modalWrapper">
+            <div class="modalContents">
+                <div class="title">
+                    <p>J号館 <span class="j"><span class="J_time"></span></span>の詳細</p>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <img class="J-icon" src="../static/images/icon1.png">
+                    </div>
+                    <div>
+                        <p class="time-people">
+                            <a class="J-Number-of-people">--</a>
+                            <a>人</a>
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <p>--分析結果--</p>
+                    <p class="J-information">読み込み中...</p>
+                </div>
+                <p>--過去の情報--</p>
+                <p>1日前<span>○</span>人</p>
+                <p>2日前<span>○</span>人</p>
+                <p>2日前<span>○</span>人</p>
+                <br>
+                <p>※枠外をタップで詳細画面を閉じる</p>
+            </div>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- 長押しで表示 -->
+    <section id="Z-modalArea" class="modalArea">
+        <div id="Z-modalBg" class="modalBg"></div>
+        <div class="modalWrapper">
+            <div class="modalContents">
+                <div class="title">
+                    <p>Z号館 <span class="z"><span class="Z_time"></span></span>の詳細</p>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <img class="Z-icon" src="../static/images/icon1.png">
+                    </div>
+                    <div>
+                        <p class="time-people">
+                            <a class="Z-Number-of-people">--</a>
+                            <a>人</a>
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <p>--分析結果--</p>
+                    <p class="Z-information">読み込み中...</p>
+                </div>
+                <p>--過去の情報--</p>
+                <p>1日前<span>○</span>人</p>
+                <p>2日前<span>○</span>人</p>
+                <p>2日前<span>○</span>人</p>
+                <br>
+                <p>※枠外をタップで詳細画面を閉じる</p>
+            </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+
+
+
     <section id="content1"></section>
     <script src="../static/js/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -224,7 +299,19 @@
     function Z_3_onclick(){if(Z_count!=3)Z_count=Z_change_screeen(3);}
     function Z_4_onclick(){if(Z_count!=4)Z_count=Z_change_screeen(4);}
     function Z_5_onclick(){if(Z_count!=5)Z_count=Z_change_screeen(5);}
+    function J_left_onclick(){J_count=J_change_screeen(J_count-1);}
+    function J_right_onclick(){J_count=J_change_screeen(J_count+1);}
+    function Z_left_onclick(){Z_count=Z_change_screeen(Z_count-1);}
+    function Z_right_onclick(){Z_count=Z_change_screeen(Z_count+1);}
 
+    $(function () {
+        $('#J-modalBg').click(function(){
+            $('#J-modalArea').fadeOut();
+        });
+        $('#Z-modalBg').click(function(){
+            $('#Z-modalArea').fadeOut();
+        });
+    });
    
     setInterval(function () {
         getcurrdata();
@@ -234,5 +321,295 @@
     setTimeout(function () {
         getcurrdata();
     }, 0);
+</script>
+
+<script>
+    let count = 0;
+    let timer;
+    const ua = navigator.userAgent.toLowerCase();
+    const isSP = /iphone|ipod|ipad|android/.test(ua);
+    const J_now_b = document.getElementById('J-now-click');
+    const J_1_b = document.getElementById('J-1-click');
+    const J_2_b = document.getElementById('J-2-click');
+    const J_3_b = document.getElementById('J-3-click');
+    const J_4_b = document.getElementById('J-4-click');
+    const J_5_b = document.getElementById('J-5-click');
+    const Z_now_b = document.getElementById('Z-now-click');
+    const Z_1_b = document.getElementById('Z-1-click');
+    const Z_2_b = document.getElementById('Z-2-click');
+    const Z_3_b = document.getElementById('Z-3-click');
+    const Z_4_b = document.getElementById('Z-4-click');
+    const Z_5_b = document.getElementById('Z-5-click');
+    const eventStart = isSP ? 'touchstart' : 'mousedown';
+    const eventEnd   = isSP ? 'touchend' : 'mouseup';
+    const eventLeave = isSP ? 'touchmove' : 'mouseleave';
+    
+    J_now_b.addEventListener(eventStart, e => {
+        e.preventDefault();
+        J_now_b.classList.add('active');
+        timer = setInterval(() => {
+            count++;
+            if((count / 100)>=0.6){
+                $('#J-modalArea').fadeIn();
+            } 
+            else{
+                J_now_onclick()
+            }
+        }, 10);
+    })
+    
+    J_1_b.addEventListener(eventStart, e => {
+        e.preventDefault();
+        J_1_b.classList.add('active');
+        timer = setInterval(() => {
+            count++;
+            if((count / 100)>=0.6){
+                $('#J-modalArea').fadeIn();
+            } 
+            else{
+                J_1_onclick()
+            }
+        }, 10);
+    })
+
+    J_2_b.addEventListener(eventStart, e => {
+        e.preventDefault();
+        J_2_b.classList.add('active');
+        timer = setInterval(() => {
+            count++;
+            if((count / 100)>=0.6){
+                $('#J-modalArea').fadeIn();
+            } 
+            else{
+                J_2_onclick()
+            }
+        }, 10);
+    })
+
+    J_3_b.addEventListener(eventStart, e => {
+        e.preventDefault();
+        J_3_b.classList.add('active');
+        timer = setInterval(() => {
+            count++;
+            if((count / 100)>=0.6){
+                $('#J-modalArea').fadeIn();
+            } 
+            else{
+                J_3_onclick()
+            }
+        }, 10);
+    })
+
+    J_4_b.addEventListener(eventStart, e => {
+        e.preventDefault();
+        J_4_b.classList.add('active');
+        timer = setInterval(() => {
+            count++;
+            if((count / 100)>=0.6){
+                $('#J-modalArea').fadeIn();
+            } 
+            else{
+                J_4_onclick()
+            }
+        }, 10);
+    })
+
+    J_5_b.addEventListener(eventStart, e => {
+        e.preventDefault();
+        J_5_b.classList.add('active');
+        timer = setInterval(() => {
+            count++;
+            if((count / 100)>=0.6){
+                $('#J-modalArea').fadeIn();
+            } 
+            else{
+                J_5_onclick()
+            }
+        }, 10);
+    })
+
+    J_now_b.addEventListener(eventEnd, e => {
+    e.preventDefault();
+    if (count) {
+        J_now_b.classList.remove('active');
+        clearInterval(timer);
+        count = 0;
+    }
+    });
+    J_1_b.addEventListener(eventEnd, e => {
+    e.preventDefault();
+    if (count) {
+        J_1_b.classList.remove('active');
+        clearInterval(timer);
+        count = 0;
+    }
+    });
+    J_2_b.addEventListener(eventEnd, e => {
+    e.preventDefault();
+    if (count) {
+        J_2_b.classList.remove('active');
+        clearInterval(timer);
+        count = 0;
+    }
+    });
+    J_3_b.addEventListener(eventEnd, e => {
+    e.preventDefault();
+    if (count) {
+        J_3_b.classList.remove('active');
+        clearInterval(timer);
+        count = 0;
+    }
+    });
+    J_4_b.addEventListener(eventEnd, e => {
+    e.preventDefault();
+    if (count) {
+        J_4_b.classList.remove('active');
+        clearInterval(timer);
+        count = 0;
+    }
+    });
+    J_5_b.addEventListener(eventEnd, e => {
+    e.preventDefault();
+    if (count) {
+        J_5_b.classList.remove('active');
+        clearInterval(timer);
+        count = 0;
+    }
+    });
+
+    Z_now_b.addEventListener(eventStart, e => {
+        e.preventDefault();
+        Z_now_b.classList.add('active');
+        timer = setInterval(() => {
+            count++;
+            if((count / 100)>=0.6){
+                $('#Z-modalArea').fadeIn();
+            } 
+            else{
+                Z_now_onclick()
+            }
+        }, 10);
+    })
+    
+    Z_1_b.addEventListener(eventStart, e => {
+        e.preventDefault();
+        Z_1_b.classList.add('active');
+        timer = setInterval(() => {
+            count++;
+            if((count / 100)>=0.6){
+                $('#Z-modalArea').fadeIn();
+            } 
+            else{
+                Z_1_onclick()
+            }
+        }, 10);
+    })
+
+    Z_2_b.addEventListener(eventStart, e => {
+        e.preventDefault();
+        Z_2_b.classList.add('active');
+        timer = setInterval(() => {
+            count++;
+            if((count / 100)>=0.6){
+                $('#Z-modalArea').fadeIn();
+            } 
+            else{
+                Z_2_onclick()
+            }
+        }, 10);
+    })
+
+    Z_3_b.addEventListener(eventStart, e => {
+        e.preventDefault();
+        Z_3_b.classList.add('active');
+        timer = setInterval(() => {
+            count++;
+            if((count / 100)>=0.6){
+                $('#Z-modalArea').fadeIn();
+            } 
+            else{
+                Z_3_onclick()
+            }
+        }, 10);
+    })
+
+    Z_4_b.addEventListener(eventStart, e => {
+        e.preventDefault();
+        Z_4_b.classList.add('active');
+        timer = setInterval(() => {
+            count++;
+            if((count / 100)>=0.6){
+                $('#Z-modalArea').fadeIn();
+            } 
+            else{
+                Z_4_onclick()
+            }
+        }, 10);
+    })
+
+    Z_5_b.addEventListener(eventStart, e => {
+        e.preventDefault();
+        Z_5_b.classList.add('active');
+        timer = setInterval(() => {
+            count++;
+            if((count / 100)>=0.6){
+                $('#Z-modalArea').fadeIn();
+            } 
+            else{
+                Z_5_onclick()
+            }
+        }, 10);
+    })
+
+    Z_now_b.addEventListener(eventEnd, e => {
+    e.preventDefault();
+    if (count) {
+        Z_now_b.classList.remove('active');
+        clearInterval(timer);
+        count = 0;
+    }
+    });
+    Z_1_b.addEventListener(eventEnd, e => {
+    e.preventDefault();
+    if (count) {
+        Z_1_b.classList.remove('active');
+        clearInterval(timer);
+        count = 0;
+    }
+    });
+    Z_2_b.addEventListener(eventEnd, e => {
+    e.preventDefault();
+    if (count) {
+        Z_2_b.classList.remove('active');
+        clearInterval(timer);
+        count = 0;
+    }
+    });
+    Z_3_b.addEventListener(eventEnd, e => {
+    e.preventDefault();
+    if (count) {
+        Z_3_b.classList.remove('active');
+        clearInterval(timer);
+        count = 0;
+    }
+    });
+    Z_4_b.addEventListener(eventEnd, e => {
+    e.preventDefault();
+    if (count) {
+        Z_4_b.classList.remove('active');
+        clearInterval(timer);
+        count = 0;
+    }
+    });
+    Z_5_b.addEventListener(eventEnd, e => {
+    e.preventDefault();
+    if (count) {
+        Z_5_b.classList.remove('active');
+        clearInterval(timer);
+        count = 0;
+    }
+    });
+
+    
 </script>
 </html>
