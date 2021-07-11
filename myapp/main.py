@@ -273,6 +273,14 @@ def getCurrData():
     preds_z = arima_z.predict(n_periods=5)
     print("Z 号館の予測：" + str(preds_z))
 
+    for i in range(5):
+        if preds_j[i] < 0:
+            preds_j[i] = 0
+    
+    for i in range(5):
+        if preds_z[i] < 0:
+            preds_z[i] = 0
+
     j_1 = int(preds_j[0])
     j_2 = int(preds_j[1])
     j_3 = int(preds_j[2])
