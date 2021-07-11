@@ -672,7 +672,7 @@ function J_details(){
         }
     }
 
-  }
+}
 
 
 //Z号館詳細
@@ -835,4 +835,5 @@ function Z_details(){
         }
     }
 
-  }
+}
+
