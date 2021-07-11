@@ -235,12 +235,12 @@ valueInput.addEventListener('change', function(){
 //J号館
 function J_data_change(J_people,J_1,J_2,J_3,J_4){
   let J_name=[
-      "#J-now",
-      "#J-1",
-      "#J-2",
-      "#J-3",
-      "#J-4",
-      "#J-5",
+      ".J-now",
+      ".J-1",
+      ".J-2",
+      ".J-3",
+      ".J-4",
+      ".J-5",
   ]
   let border_bottom_style=[
       {"border-bottom":"3px solid #42a5f5"},
@@ -288,12 +288,12 @@ function J_change_screeen(Jcount){
 
   let J_people=people_all.j_merged_num
   let J_name=[
-      "#J-now",
-      "#J-1",
-      "#J-2",
-      "#J-3",
-      "#J-4",
-      "#J-5",
+      ".J-now",
+      ".J-1",
+      ".J-2",
+      ".J-3",
+      ".J-4",
+      ".J-5",
   ]
   let name2=[
       "現在",
@@ -334,36 +334,36 @@ function J_change_screeen(Jcount){
 
   J_data_change(J_people,J_1,J_2,J_3,J_4)
   if(J_1<=J_people[J_count]&&J_people[J_count]<J_2){
-      $("#J_time").html(name2[J_count]);
-      $("#J-information").html(comment_icon1+comment1);
-      $("#J-Number-of-people").html(J_people[J_count]);
+      $(".J_time").html(name2[J_count]);
+      $(".J-information").html(comment_icon1+comment1);
+      $(".J-Number-of-people").html(J_people[J_count]);
       $(J_name[J_count]).css(border_bottom_style[0]);
       $(J_name[J_count]).css(background_color_style[0]);
-      $("#J-icon").attr(src_style[0]);
+      $(".J-icon").attr(src_style[0]);
   }
   else if(J_2<=J_people[J_count]&&J_people[J_count]<J_3){
-      $("#J_time").html(name2[J_count]);
-      $("#J-information").html(comment_icon2+comment2);
-      $("#J-Number-of-people").html(J_people[J_count]);
+      $(".J_time").html(name2[J_count]);
+      $(".J-information").html(comment_icon2+comment2);
+      $(".J-Number-of-people").html(J_people[J_count]);
       $(J_name[J_count]).css(border_bottom_style[1]);
       $(J_name[J_count]).css(background_color_style[1]);
-      $("#J-icon").attr(src_style[1]);
+      $(".J-icon").attr(src_style[1]);
   }
   else if(J_3<=J_people[J_count]&&J_people[J_count]<J_4){
-      $("#J_time").html(name2[J_count]);
-      $("#J-information").html(comment_icon2+comment3);
-      $("#J-Number-of-people").html(J_people[J_count]);
+      $(".J_time").html(name2[J_count]);
+      $(".J-information").html(comment_icon2+comment3);
+      $(".J-Number-of-people").html(J_people[J_count]);
       $(J_name[J_count]).css(border_bottom_style[2]);
       $(J_name[J_count]).css(background_color_style[2]);
-      $("#J-icon").attr(src_style[2]);
+      $(".J-icon").attr(src_style[2]);
   }
   else{
-      $("#J_time").html(name2[J_count]);
-      $("#J-information").html(comment_icon2+comment4);
-      $("#J-Number-of-people").html(J_people[J_count]);
+      $(".J_time").html(name2[J_count]);
+      $(".J-information").html(comment_icon2+comment4);
+      $(".J-Number-of-people").html(J_people[J_count]);
       $(J_name[J_count]).css(border_bottom_style[3]);
       $(J_name[J_count]).css(background_color_style[3]);
-      $("#J-icon").attr(src_style[3]);
+      $(".J-icon").attr(src_style[3]);
     }
     
     if(0<=Jcount&&Jcount<=5)return Jcount;
@@ -376,12 +376,12 @@ function J_change_screeen(Jcount){
 //Z号館
 function Z_data_change(Z_people,Z_1,Z_2,Z_3,Z_4){
   let Z_name=[
-      "#Z-now",
-      "#Z-1",
-      "#Z-2",
-      "#Z-3",
-      "#Z-4",
-      "#Z-5",
+      ".Z-now",
+      ".Z-1",
+      ".Z-2",
+      ".Z-3",
+      ".Z-4",
+      ".Z-5",
   ]
   let border_bottom_style=[
       {"border-bottom":"3px solid #42a5f5"},
@@ -428,12 +428,12 @@ function Z_change_screeen(Zcount){
 
   let Z_people=people_all.z_merged_num
   let Z_name=[
-      "#Z-now",
-      "#Z-1",
-      "#Z-2",
-      "#Z-3",
-      "#Z-4",
-      "#Z-5",
+      ".Z-now",
+      ".Z-1",
+      ".Z-2",
+      ".Z-3",
+      ".Z-4",
+      ".Z-5",
   ]
   let name2=[
       "現在",
@@ -474,36 +474,36 @@ function Z_change_screeen(Zcount){
 
   Z_data_change(Z_people,Z_1,Z_2,Z_3,Z_4)
   if(Z_1<=Z_people[Z_count]&&Z_people[Z_count]<Z_2){
-      $("#Z_time").html(name2[Z_count]);
-      $("#Z-information").html(comment_icon1+comment1);
-      $("#Z-Number-of-people").html(Z_people[Z_count]);
+      $(".Z_time").html(name2[Z_count]);
+      $(".Z-information").html(comment_icon1+comment1);
+      $(".Z-Number-of-people").html(Z_people[Z_count]);
       $(Z_name[Z_count]).css(border_bottom_style[0]);
       $(Z_name[Z_count]).css(background_color_style[0]);
-      $("#Z-icon").attr(src_style[0]);
+      $(".Z-icon").attr(src_style[0]);
   }
   else if(Z_2<=Z_people[Z_count]&&Z_people[Z_count]<Z_3){
-      $("#Z_time").html(name2[Z_count]);
-      $("#Z-information").html(comment_icon2+comment2);
-      $("#Z-Number-of-people").html(Z_people[Z_count]);
+      $(".Z_time").html(name2[Z_count]);
+      $(".Z-information").html(comment_icon2+comment2);
+      $(".Z-Number-of-people").html(Z_people[Z_count]);
       $(Z_name[Z_count]).css(border_bottom_style[1]);
       $(Z_name[Z_count]).css(background_color_style[1]);
-      $("#Z-icon").attr(src_style[1]);
+      $(".Z-icon").attr(src_style[1]);
   }
   else if(Z_3<=Z_people[Z_count]&&Z_people[Z_count]<Z_4){
-      $("#Z_time").html(name2[Z_count]);
-      $("#Z-information").html(comment_icon2+comment3);
-      $("#Z-Number-of-people").html(Z_people[Z_count]);
+      $(".Z_time").html(name2[Z_count]);
+      $(".Z-information").html(comment_icon2+comment3);
+      $(".Z-Number-of-people").html(Z_people[Z_count]);
       $(Z_name[Z_count]).css(border_bottom_style[2]);
       $(Z_name[Z_count]).css(background_color_style[2]);
-      $("#Z-icon").attr(src_style[2]);
+      $(".Z-icon").attr(src_style[2]);
   }
   else{
-      $("#Z_time").html(name2[Z_count]);
-      $("#Z-information").html(comment_icon2+comment4);
-      $("#Z-Number-of-people").html(Z_people[Z_count]);
+      $(".Z_time").html(name2[Z_count]);
+      $(".Z-information").html(comment_icon2+comment4);
+      $(".Z-Number-of-people").html(Z_people[Z_count]);
       $(Z_name[Z_count]).css(border_bottom_style[3]);
       $(Z_name[Z_count]).css(background_color_style[3]);
-      $("#Z-icon").attr(src_style[3]);
+      $(".Z-icon").attr(src_style[3]);
   }
   
   if(0<=Zcount&&Zcount<=5)return Zcount;
