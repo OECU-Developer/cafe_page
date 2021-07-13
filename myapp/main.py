@@ -11,7 +11,6 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import csv
-import pmdarima as pm
 
 
 app = Flask(__name__, instance_path='/instance')
@@ -219,79 +218,23 @@ def getCurrData():
     db_session.commit()
     db_session.close()
 
+    df_j = pd.read_csv('predict/j.csv')
+    print(df_j)
 
-    users = db_session.query(SensorCurrent).all()
+    df_z = pd.read_csv('predict/z.csv')
+    print(df_z)
 
-    csv_name =  "output.csv"
+    j_1 = int(df_j['j_1'])
+    j_2 = int(df_j['j_2'])
+    j_3 = int(df_j['j_3'])
+    j_4 = int(df_j['j_4'])
+    j_5 = int(df_j['j_5'])
 
-    with open(csv_name, 'w') as f:
-        for user in users:
-            j = user.j_merged_num
-            z = user.z_merged_num
-            date = user.date
-            date = date.strftime('%Y-%m-%d %H:%M:%S')
-            writer = csv.writer(f)
-            writer.writerow([j, z, date])
-
-    df = pd.read_csv(csv_name)
-    df.columns = ['j', 'z', 'date']
-
-
-    # datetime 型に変換
-    df["date"] = pd.to_datetime(df["date"])
-    # 1分間にまとめる
-    df = df.groupby(pd.Grouper(key='date', freq='1min')).mean().reset_index()
-    print(df.head(10))
-    # 0埋め
-    df = df.fillna(0)
-
-    # date をインデックスにする
-    df = df.set_index("date")
-
-    # 今日の日付
-    today = datetime.date.today()
-    print(today)
-    
-    # 今日だけを取り出す
-    df = df[str(today):str(today)]
-
-    print(df.head(10))
-
-    print("len(df)："+str(len(df)))
-    print(df.isnull().sum())
-
-    # Fit an ARIMA
-    arima_j = pm.ARIMA(order=(4, 2, 0),seasonal=True,enforce_stationarity=False)
-    arima_j.fit(df["j"])
-
-    arima_z = pm.ARIMA(order=(4, 2, 0),seasonal=True,enforce_stationarity=False)
-    arima_z.fit(df["z"])
-
-    preds_j = arima_j.predict(n_periods=5)
-    print("J 号館の予測：" + str(preds_j))
-
-    preds_z = arima_z.predict(n_periods=5)
-    print("Z 号館の予測：" + str(preds_z))
-
-    for i in range(5):
-        if preds_j[i] < 0:
-            preds_j[i] = 0
-    
-    for i in range(5):
-        if preds_z[i] < 0:
-            preds_z[i] = 0
-
-    j_1 = int(preds_j[0])
-    j_2 = int(preds_j[1])
-    j_3 = int(preds_j[2])
-    j_4 = int(preds_j[3])
-    j_5 = int(preds_j[4])
-
-    z_1 = int(preds_z[0])
-    z_2 = int(preds_z[1])
-    z_3 = int(preds_z[2])
-    z_4 = int(preds_z[3])
-    z_5 = int(preds_z[4])
+    z_1 = int(df_z['z_1'])
+    z_2 = int(df_z['z_2'])
+    z_3 = int(df_z['z_3'])
+    z_4 = int(df_z['z_4'])
+    z_5 = int(df_z['z_5'])
 
     people = SensorCurrent.query.first()
 
