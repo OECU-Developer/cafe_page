@@ -288,6 +288,7 @@ let people=[
     [z_people[0],z_people[1],z_people[5]]
 ]
 
+
 //borderの色の変更
  for(j=0;j<2;j++){
 for(i=0;i<3;i++){
@@ -348,14 +349,19 @@ if(count==i){
 }
 }
 }
-
-   if(count==0){
-       return 1;
-   }
-   else if(count==1){
-       return 2;
-   }
-   else if(count==2){
-       return 0;
-   }
+if(count==0){
+    $("#J_time").html("現在");
+    $("#Z_time").html("現在"); 
+    return 1;
+}
+else if(count==1){
+    $("#J_time").html("1分後");
+    $("#Z_time").html("1分後");
+    return 2;
+}
+else if(count==2){
+    $("#Z_time").html("5分後");
+    $("#J_time").html("5分後");
+    return 0;
+}
 }
