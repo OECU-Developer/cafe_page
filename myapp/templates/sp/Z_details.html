@@ -64,7 +64,7 @@
           <img id="Z-details-1-icon" src="../static/images/icon2.png">
           <div class="Around">
             <p class="after-a-minute">1分後</p>
-            <p id="Z-details-1-fas"><i class="fas fa-arrow-circle-up"></i><br>--人</p>
+            <p id="Z-details-1-fas" class="people-position"><i class="fas fa-arrow-circle-up"></i>--人</p>
             <p class="Comment" id="Z-details-1-comment"></p>
           </div>
         </div>
@@ -76,7 +76,7 @@
           <img id="Z-details-2-icon" src="../static/images/icon2.png">
           <div class="Around">
             <p class="after-a-minute">2分後</p>
-            <p id="Z-details-2-fas"><i class="fas fa-arrow-circle-up"></i><br>--人</p>
+            <p id="Z-details-2-fas" class="people-position"><i class="fas fa-arrow-circle-up"></i>--人</p>
             <p class="Comment" id="Z-details-2-comment"></p>
           </div>
         </div>
@@ -89,7 +89,7 @@
           <img id="Z-details-3-icon" src="../static/images/icon3.png">
           <div class="Around">
             <p class="after-a-minute">3分後</p>
-            <p id="Z-details-3-fas"><i class="fas fa-arrow-circle-up"></i><br>--人</p>
+            <p id="Z-details-3-fas" class="people-position"><i class="fas fa-arrow-circle-up"></i>--人</p>
             <p class="Comment" id="Z-details-3-comment"></p>
           </div>
         </div>
@@ -102,7 +102,7 @@
           <img id="Z-details-4-icon" src="../static/images/icon4.png">
           <div class="Around">
             <p class="after-a-minute">4分後</p>
-            <p id="Z-details-4-fas"><i class="fas fa-arrow-circle-up"></i><br>--人</p>
+            <p id="Z-details-4-fas" class="people-position"><i class="fas fa-arrow-circle-up"></i>--人</p>
             <p class="Comment" id="Z-details-4-comment"></p>
           </div>
         </div>
@@ -114,7 +114,7 @@
           <img id="Z-details-5-icon" src="../static/images/icon4.png">
           <div class="Around">
             <p class="after-a-minute">5分後</p>
-            <p id="Z-details-5-fas"><i class="fas fa-arrow-circle-up"></i><br>--人</p>
+            <p id="Z-details-5-fas" class="people-position"><i class="fas fa-arrow-circle-up"></i>--人</p>
             <p class="Comment" id="Z-details-5-comment"></p>
           </div>
         </div>
@@ -127,10 +127,6 @@
         display: flex;
         justify-content: center;
         position: relative;
-      }
-      .Around p{
-        margin: 3%;
-        text-align: center;
       }
       .Around div{
         width: 80%;
@@ -148,6 +144,7 @@
         margin-left: 5%;
         margin-right: 5%;
         padding: 3%;
+        position: relative;
       }
       .under-icon{
         position: absolute;
@@ -156,6 +153,7 @@
       }
       .Z-information{
         margin-bottom: 0;
+        padding-bottom: 1%;
       }
       .under{
         position: absolute;
@@ -164,11 +162,13 @@
       }
       .after-a-minute{
         font-size: 200%;
+        padding-right: 15%;
       }
       .Comment{
-        padding-top: 3%;
+        margin:0;
+        padding-top: 6%;
         padding-bottom: 3%;
-        font-size: large;
+        font-size:150%;
       }
       .detail-frame{
         background-image: url("../static/images/detail_frame.png");
@@ -184,6 +184,21 @@
       }
       .Around-now{
         padding-top: 5%;
+        padding-left: 20%;
+      }
+      .after-a-minute{
+        padding-right: 13%;
+      }
+      .people-position{
+        position: absolute;
+        left: 10%;
+        top: 60%;
+        font-size: 120%;
+      }
+      #view_time{
+        position: absolute;
+        right: 50%;
+        padding-top: 3%;
       }
     </style>
 

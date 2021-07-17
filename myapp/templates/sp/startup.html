@@ -110,14 +110,6 @@
 
     <p id="heatstroke">{{heatstroke}}</p>
    
-    <div class="title">
-      <p><span class="j">J</span> 号館  <i class="fas fa-angle-double-right"></i>
-      <img calss="J-icon"></p>
-    </div>
-    <div class="title">
-      <p><span class="z">Z</span> 号館  <i class="fas fa-angle-double-right"></i> 
-      <img cass="Z-icon"></p>
-    </div>
 
     <style>
       .title p{
@@ -196,8 +188,6 @@
   setInterval(function () {
     if(count==0){
       $("#1").html("混雑度チェッカーを起動しています...");
-      J_change_screeen(0)
-      Z_change_screeen(0)
     }
     else if(count==1){
       $("#2").html("完了.");
@@ -216,9 +206,6 @@
     }
     count=count+1
   }, 270);
-  setTimeout(function () {
-        getcurrdata();
-  }, 0);
 
 
 </script>
