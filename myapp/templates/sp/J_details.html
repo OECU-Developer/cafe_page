@@ -44,13 +44,13 @@
     </nav>
 
     <div>
-      <div class="card-body">
+      <div class="card-body detail-frame-now">
         <div class="Around">
           <img calss="J-icon" src="../static/images/icon1.png">
-          <div class="Around">
+          <div class="Around Around-now">
             <p><span id="view_time"></span></p>
             
-            <a class="J-Number-of-people">--</a>
+            <a class="J-Number-of-people Around-now">--</a>
             <p class="under">人</p>
           </div>
         </div>
@@ -59,7 +59,7 @@
       </div>
 
 
-      <div class="card-body">
+      <div class="card-body detail-frame">
         <div class="Around">
           <img id="J-details-1-icon" src="../static/images/icon2.png">
           <div class="Around">
@@ -71,7 +71,7 @@
         <i class="fas fa-caret-down under-icon"></i>
       </div>
 
-      <div class="card-body">
+      <div class="card-body detail-frame">
         <div class="Around">
           <img id="J-details-2-icon" src="../static/images/icon2.png">
           <div class="Around">
@@ -84,7 +84,7 @@
       </div>
       
 
-      <div class="card-body">
+      <div class="card-body detail-frame">
         <div class="Around">
           <img id="J-details-3-icon" src="../static/images/icon3.png">
           <div class="Around">
@@ -97,7 +97,7 @@
       </div>
 
 
-      <div class="card-body">
+      <div class="card-body detail-frame">
         <div class="Around">
           <img id="J-details-4-icon" src="../static/images/icon4.png">
           <div class="Around">
@@ -109,7 +109,7 @@
         <i class="fas fa-caret-down under-icon"></i>
       </div>
 
-      <div class="card-body">
+      <div class="card-body detail-frame">
         <div class="Around">
           <img id="J-details-5-icon" src="../static/images/icon4.png">
           <div class="Around">
@@ -154,7 +154,7 @@
         left: 50%;
         font-size: 150%;
       }
-      #J-information{
+      .J-information{
         margin-bottom: 0;
       }
       .under{
@@ -169,6 +169,21 @@
         padding-top: 3%;
         padding-bottom: 3%;
         font-size: large;
+      }
+      .detail-frame{
+        background-image: url("../static/images/detail_frame.png");
+        background-size:100% 100%;
+      }
+      .detail-frame-now{
+        background-image: url("../static/images/home_frame.png");
+        background-size:100% 100%;
+      }
+      .detail-frame-now div img{
+        padding-top: 12px;
+        width: 22%;
+      }
+      .Around-now{
+        padding-top: 5%;
       }
     </style>
 
