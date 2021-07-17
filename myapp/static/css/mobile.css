@@ -318,45 +318,57 @@ g {
   font-size: 8px;
 }
 .line-content p span{
-  font-size: 15px;
+  font-size: 16px;
 }
 .J-now{
+  white-space: nowrap;
   border-bottom: 3px solid #42a5f5;
   background-color: #42a5f5;
 }
 .J-1{
+  white-space: nowrap;
   border-bottom: 3px solid #42a5f5;
 }
 .J-2{
+  white-space: nowrap;
   border-bottom: 3px solid #79d8b8;
 }
 .J-3{
+  white-space: nowrap;
   border-bottom: 3px solid #ffd659;
 }
 .J-4{
+  white-space: nowrap;
   border-bottom: 3px solid #ffd659;
 }
 .J-5{
+  white-space: nowrap;
   border-bottom: 3px solid #ff5a4e;
 }
 
 .Z-now{
+  white-space: nowrap;
   border-bottom: 3px solid #42a5f5;
   background-color: #42a5f5;
 }
 .Z-1{
+  white-space: nowrap;
   border-bottom: 3px solid #42a5f5;
 }
 .Z-2{
+  white-space: nowrap;
   border-bottom: 3px solid #79d8b8;
 }
 .Z-3{
+  white-space: nowrap;
   border-bottom: 3px solid #ffd659;
 }
 .Z-4{
+  white-space: nowrap;
   border-bottom: 3px solid #ffd659;
 }
 .Z-5{
+  white-space: nowrap;
   border-bottom: 3px solid #ff5a4e;
 }
 
