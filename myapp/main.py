@@ -152,9 +152,9 @@ def home():
     people = SensorCurrent.query.first()
     return render_template('mobile_index.html', people=people)       
 
-@app.route("/map")
-def map():
-    return render_template('map.html')
+@app.route("/login_page")
+def login_page():
+    return render_template('login_page.html')
 
 @app.route("/J_details")
 def J_details():
