@@ -3,3 +3,6 @@ myapp/models/__pycache__/*
 cafe_page/.env
 myapp/instance/*
 myapp/models/people.db
+myapp/sqlite_db
+*/.env
+*/.DS_Store

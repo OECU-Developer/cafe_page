@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, json, jsonify, Response
+from flask import Flask, render_template, request, json, jsonify, Response, redirect, url_for
 from flask_httpauth import HTTPDigestAuth
 from models.models import SensorCurrent
 from models.database import db_session
@@ -12,11 +12,42 @@ import requests
 import pandas as pd
 import csv
 
+#Google Oauth
+
+from config import *
+import json
+import os
+import re
+os.environ["FLASK_APP"] = "main"
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+import sqlite3
+from flask_login import (
+    LoginManager,
+    current_user,
+    login_required,
+    login_user,
+    logout_user,
+)
+from oauthlib.oauth2 import WebApplicationClient
+from db import init_db_command
+from user import User
+
+# 設定情報
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", GOOGLE_CLIENT_ID)
+GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", GOOGLE_CLIENT_SECRET)
+GOOGLE_DISCOVERY_URL = (
+    "https://accounts.google.com/.well-known/openid-configuration"
+)
 
 app = Flask(__name__, instance_path='/instance')
 app.config.from_pyfile('app.cfg', silent=True)
 app.config['SECRET_KEY'] = 'secret key here'
 app.config['DIGEST_AUTH_FORCE'] = True
+
+#セッション管理の設定
+login_manager = LoginManager()
+login_manager.init_app(app)
+
 auth = HTTPDigestAuth()
 
 devices = flask_devices.Devices(app)
@@ -30,6 +61,26 @@ users = {
 ADMIN_URL="960c9ce04ecc10d80106be257e52a3cf73258a2e4633a045b06a922c1de7208f"
 
 addr = {''}
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    return "このページにアクセスするにはログインする必要があります。", 403
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
+def get_google_provider_cfg():
+    return requests.get(GOOGLE_DISCOVERY_URL).json()
+
+# Google Oauthデータベースの初期化
+try:
+    init_db_command()
+except sqlite3.OperationalError:
+    pass
+
+# OAuth2クライアント設定
+client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
 @app.route("/", methods=['POST'])
 def info():
@@ -280,6 +331,100 @@ def generate_random_data():
 def chart_data():
     time.sleep(5)
     return Response(generate_random_data(), mimetype="text/event-stream")
+
+#Google Oauth用route
+@app.route("/myPage")
+def myPage():
+    if current_user.is_authenticated:
+        return (
+            "<p>Hello, {}! You're logged in! Email: {}</p>"
+            "<div><p>Google Profile Picture:</p>"
+            '<img src="{}" alt="Google profile pic"></img></div>'
+            '<a class="button" href="/myPage/logout">Logout</a>'.format(
+                current_user.name, current_user.email, current_user.profile_pic
+            )
+        )
+    else:
+        return '<a class="button" href="/myPage/login">Google Login</a>'
+ 
+@app.route("/myPage/login")
+def login():
+    # 認証用のエンドポイントを取得する
+    google_provider_cfg = get_google_provider_cfg()
+    authorization_endpoint = google_provider_cfg["authorization_endpoint"]
+    # ユーザプロファイルを取得するログイン要求
+    request_uri = client.prepare_request_uri(
+        authorization_endpoint,
+        redirect_uri=request.base_url + "/callback",
+        scope=["openid", "email", "profile"],
+    )
+    return redirect(request_uri)
+
+
+@app.route("/myPage/login/callback")
+def callback():
+    # Googleから返却された認証コードを取得する
+    code = request.args.get("code")
+
+    #トークンを取得するためのURLを取得する
+    google_provider_cfg = get_google_provider_cfg()
+    token_endpoint = google_provider_cfg["token_endpoint"]
+
+    # トークンを取得するための情報を生成し、送信する
+    token_url, headers, body = client.prepare_token_request(
+        token_endpoint,
+        authorization_response=request.url,
+        redirect_url=request.base_url,
+        code=code,
+    )
+    token_response = requests.post(
+        token_url,
+        headers=headers,
+        data=body,
+        auth=(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET),
+    )
+
+    # トークンをparse
+    client.parse_request_body_response(json.dumps(token_response.json()))
+
+    # トークンができたので、GoogleからURLを見つけてヒットした、
+    # Googleプロフィール画像やメールなどのユーザーのプロフィール情報を取得
+    userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
+    uri, headers, body = client.add_token(userinfo_endpoint)
+    userinfo_response = requests.get(uri, headers=headers, data=body)
+
+    # メールが検証されていれば、名前、email、プロフィール画像を取得します
+    if userinfo_response.json().get("email_verified"):
+        unique_id = userinfo_response.json()["sub"]
+        users_email = userinfo_response.json()["email"]
+        
+        if not re.search("@oecu\.jp$",users_email):
+            return "このページにアクセスするにはoecu.jpドメインのGoogleアカウントでログインする必要があります。", 400
+        
+        picture = userinfo_response.json()["picture"]
+        users_name = userinfo_response.json()["given_name"]
+    else:
+        return "User email not available or not verified by Google.", 400
+
+    # Googleから提供された情報をもとに、Userを生成する
+    user = User(
+        id_=unique_id, name=users_name, email=users_email, profile_pic=picture
+    )
+
+    # 登録されていない場合は、データベースへ登録する
+    if not User.get(unique_id):
+        User.create(unique_id, users_name, users_email, picture)
+
+    # ログインしてユーザーセッションを開始
+    login_user(user)
+
+    return redirect(url_for("myPage"))
+
+@app.route("/myPage/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("myPage"))
 
 @app.errorhandler(404)
 def page_not_found(error):
